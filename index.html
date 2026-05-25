@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Organisation Marketing · Pôles, rôle & go-to-market</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://ayming-france.github.io/assets/engine/slides.css">
+  <style>
+    :root {
+      --ay-primary: #11a9e6;
+      --ay-accent: #0da4e8;
+      --ay-dark: #00456d;
+      --ay-success: #0ab38c;
+      --ay-warning: #f59e0b;
+      --ay-danger: #ef4444;
+      --ay-text: #0f172a;
+      --ay-gray: #6b7280;
+      --ay-light: #9ca3af;
+      --ay-bg-subtle: #eef2f6;
+      --ay-bg-light: #f8fafc;
+    }
+
+    .slide-inner.insights { padding: 56px 72px; }
+    .slide-title.compact { margin-bottom: 24px; font-size: 32px; }
+    .slide-eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--ay-primary);
+      margin-bottom: 8px;
+    }
+    .intro-line {
+      font-size: 14px;
+      color: var(--ay-text);
+      line-height: 1.55;
+      margin: 0 0 22px 0;
+      max-width: 980px;
+    }
+
+    /* Pole grid */
+    .pole-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+    .pole-card {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 18px 22px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      position: relative;
+    }
+    .pole-card.highlight {
+      border: 2px solid var(--ay-primary);
+      background: linear-gradient(135deg, #f8fafc 0%, #eaf6fc 100%);
+    }
+    .pole-card h4 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--ay-dark);
+      margin: 0 0 2px 0;
+    }
+    .pole-card .owner {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ay-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+    .pole-card p {
+      font-size: 13px;
+      color: var(--ay-text);
+      line-height: 1.5;
+      margin: 0;
+    }
+    .pole-badge {
+      position: absolute;
+      top: 14px; right: 16px;
+      background: var(--ay-primary);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 3px 9px;
+      border-radius: 20px;
+    }
+
+    /* Mandate cards */
+    .mandate-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin: 20px 0;
+    }
+    .mandate-card {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-top: 3px solid var(--ay-primary);
+      border-radius: 10px;
+      padding: 16px 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    .mandate-card .step-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ay-dark);
+      margin-bottom: 6px;
+    }
+    .mandate-card p {
+      font-size: 12.5px;
+      color: var(--ay-text);
+      line-height: 1.45;
+      margin: 0;
+    }
+
+    /* Split panels (constat) */
+    .split-panels {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin: 22px 0;
+    }
+    .panel { border-radius: 12px; padding: 22px 26px; }
+    .panel.doing { background: var(--ay-bg-subtle); border: 1px solid #d7dee6; }
+    .panel.market { background: linear-gradient(135deg, #fff7ed 0%, #fdeed6 100%); border: 2px solid var(--ay-warning); }
+    .panel .panel-tag {
+      font-size: 12px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1px; margin-bottom: 6px;
+    }
+    .panel.doing .panel-tag { color: var(--ay-gray); }
+    .panel.market .panel-tag { color: #c2740a; }
+    .panel h4 { font-size: 21px; font-weight: 700; color: var(--ay-dark); margin: 0 0 9px 0; }
+    .panel p { font-size: 13px; color: var(--ay-text); line-height: 1.55; margin: 0; text-align: left; }
+
+    /* Proposal cards (closing) */
+    .propose-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin: 22px 0;
+    }
+    .propose-card {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-top: 3px solid var(--ay-primary);
+      border-radius: 12px;
+      padding: 20px 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    .propose-num {
+      display: inline-flex;
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      background: var(--ay-primary);
+      color: #fff;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+    .propose-card h4 { font-size: 14px; font-weight: 700; color: var(--ay-dark); margin: 0 0 6px 0; }
+    .propose-card p { font-size: 12.5px; color: var(--ay-text); line-height: 1.5; margin: 0; text-align: left; }
+
+    /* Insight callout */
+    .insight-card {
+      background: linear-gradient(135deg, #f8fafc 0%, #eef2f6 100%);
+      border-left: 4px solid var(--ay-primary);
+      border-radius: 10px;
+      padding: 16px 20px;
+      text-align: left;
+    }
+    .insight-card.success { border-left-color: var(--ay-success); }
+    .insight-card.warning { border-left-color: var(--ay-warning); }
+    .insight-card h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ay-dark);
+      margin: 0 0 6px 0;
+    }
+    .insight-card p {
+      font-size: 13px;
+      color: var(--ay-text);
+      line-height: 1.5;
+      margin: 0;
+    }
+    .insight-card p + p { margin-top: 4px; }
+
+    /* Two column */
+    .two-col { display: grid; grid-template-columns: 1.15fr 1fr; gap: 32px; align-items: start; }
+    .col-block h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ay-dark);
+      margin: 0 0 12px 0;
+      padding-bottom: 7px;
+      border-bottom: 2px solid var(--ay-primary);
+    }
+    .col-block h3.muted { border-bottom-color: var(--ay-light); color: var(--ay-gray); }
+    .role-list { list-style: none; padding: 0; margin: 0; }
+    .role-list li {
+      font-size: 12.5px;
+      color: var(--ay-text);
+      line-height: 1.45;
+      padding: 5px 0 5px 18px;
+      position: relative;
+      text-align: left;
+    }
+    .role-list li::before {
+      content: "";
+      position: absolute;
+      left: 0; top: 11px;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--ay-primary);
+    }
+    .role-list.exclude li::before { background: var(--ay-danger); }
+    .role-list.star li::before { background: var(--ay-success); }
+    .col-block + .col-block { margin-top: 18px; }
+
+    /* Data table */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12.5px;
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    .data-table thead th {
+      background: var(--ay-dark);
+      color: #fff;
+      text-align: left;
+      padding: 9px 12px;
+      font-weight: 600;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+    .data-table tbody td {
+      padding: 8px 12px;
+      border-bottom: 1px solid #f1f5f9;
+      color: var(--ay-text);
+      line-height: 1.4;
+    }
+    .data-table tbody tr.gpm td { background: #eaf6fc; }
+    .data-table tbody tr.gpm td.resp { font-weight: 700; color: var(--ay-dark); }
+
+    .footnote { font-size: 11px; color: var(--ay-light); margin-top: 14px; font-style: italic; }
+
+    /* Compact fit for dense slides */
+    .compact-fit .slide-inner.insights { padding-top: 30px; padding-bottom: 14px; }
+    .compact-fit .slide-title.compact { margin-bottom: 16px; }
+
+    /* Author credit */
+    .deck-credit {
+      position: fixed;
+      bottom: 18px; left: 26px;
+      font-size: 11px; font-weight: 700;
+      color: var(--ay-gray); letter-spacing: 0.3px;
+      z-index: 90; white-space: nowrap;
+      pointer-events: none;
+    }
+    .cover-credit {
+      margin-top: 20px; font-size: 12px; font-weight: 700;
+      color: #fff; letter-spacing: 0.3px; opacity: 0.9;
+    }
+
+    .chapter-nav { max-height: 100vh; overflow-y: auto; }
+    .chapter-nav .nav-item {
+      white-space: normal; overflow: visible; text-overflow: clip;
+      height: auto; min-height: 0; line-height: 1.25;
+      align-items: flex-start; padding-top: 6px; padding-bottom: 6px;
+    }
+    .chapter-nav .nav-item-number { flex: 0 0 auto; }
+  </style>
+</head>
+<body>
+
+  <!-- Chapter Navigation -->
+  <nav class="chapter-nav">
+    <div class="nav-toggle"><span></span><span></span><span></span></div>
+    <div class="nav-header">
+      <div class="nav-logo">
+        <img src="https://raw.githubusercontent.com/ayming-france/assets/main/logos/ayming-logo.png" alt="Ayming">
+      </div>
+      <span class="nav-subtitle">Organisation Marketing</span>
+    </div>
+    <div class="nav-section">
+      <div class="nav-item active" data-slide="0"><span class="nav-item-number">01</span>Couverture</div>
+      <div class="nav-item" data-slide="1"><span class="nav-item-number">02</span>Le constat</div>
+      <div class="nav-item" data-slide="2"><span class="nav-item-number">03</span>Les quatre pôles</div>
+      <div class="nav-item" data-slide="3"><span class="nav-item-number">04</span>Pôle Growth &amp; Product Marketing</div>
+      <div class="nav-item" data-slide="4"><span class="nav-item-number">05</span>Poste : Responsable Growth &amp; PM</div>
+      <div class="nav-item" data-slide="5"><span class="nav-item-number">06</span>Le processus go-to-market</div>
+      <div class="nav-item" data-slide="6"><span class="nav-item-number">07</span>Ce que je propose</div>
+    </div>
+  </nav>
+
+  <div class="slide-counter"><span class="current">1</span>/7</div>
+
+  <main class="presentation">
+
+    <!-- ========== SLIDE 0 : COUVERTURE ========== -->
+    <section class="slide cover active" data-chapter="cover">
+      <div class="cover-layout">
+        <div class="cover-left">
+          <div class="cover-logo">
+            <img src="https://raw.githubusercontent.com/ayming-france/assets/main/logos/ayming-logo.png" alt="Ayming">
+          </div>
+          <h1 class="cover-title">Organisation<br>Marketing</h1>
+          <p class="cover-subtitle">Pôles, rôle et processus go-to-market<br>Proposition de structure pour discussion</p>
+          <p class="cover-credit">José J Encarnación Saiter | Marketing France · 22 mai 2026</p>
+        </div>
+        <div class="cover-right">
+          <img class="cover-image" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80" alt="Organisation">
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SLIDE 1 : LE CONSTAT ========== -->
+    <section class="slide" data-chapter="constat">
+      <div class="slide-inner insights">
+        <div class="slide-eyebrow">Le constat</div>
+        <h1 class="slide-title compact">Marketing = « market » + « -ing »</h1>
+
+        <p class="intro-line">
+          Le mot le dit lui-même : le marketing, c'est le marché, en action. Aujourd'hui, l'organisation fait
+          surtout le « -ing ». Le « market » manque.
+        </p>
+
+        <div class="split-panels">
+          <div class="panel doing">
+            <div class="panel-tag">« -ing » &middot; l'activité</div>
+            <h4>Ce qu'on fait</h4>
+            <p>Campagnes, emails, événements, reporting, optimisation du funnel. C'est l'activité marketing, et on la mène plutôt bien.</p>
+          </div>
+          <div class="panel market">
+            <div class="panel-tag">« market » &middot; le client</div>
+            <h4>Ce qui manque</h4>
+            <p>Ses déclencheurs d'achat, ses freins, le « job » pour lequel il nous choisit. Aujourd'hui ce travail se fait de tête et sur recherche documentaire, pas au contact du marché.</p>
+          </div>
+        </div>
+
+        <div class="insight-card warning">
+          <h4>Le funnel optimise l'activité, il ne dit jamais pourquoi le client achète</h4>
+          <p>Il manque une fonction qui ramène le « market » dans le marketing : la recherche client, le
+          positionnement, et la conversion pilotée par la compréhension du client. C'est l'objet du pôle
+          Growth &amp; Product Marketing.</p>
+        </div>
+      </div>
+      <div class="company-logo"><img src="https://raw.githubusercontent.com/ayming-france/assets/main/logos/ayming-logo.png" alt="Ayming"></div>
+    </section>
+
+    <!-- ========== SLIDE 2 : LES QUATRE POLES ========== -->
+    <section class="slide" data-chapter="poles">
+      <div class="slide-inner insights">
+        <div class="slide-eyebrow">Structure</div>
+        <h1 class="slide-title compact">Quatre pôles, organisés par discipline</h1>
+
+        <p class="intro-line">
+          Un principe unique : chaque pôle est une discipline, avec un périmètre net. Les lignes métier
+          (RH, Innovation, Fiscalité) apportent l'expertise de fond ; elles ne forment pas un pôle, elles
+          alimentent tous les pôles.
+        </p>
+
+        <div class="pole-grid">
+          <div class="pole-card highlight">
+            <span class="pole-badge">Mon pôle</span>
+            <h4>Growth &amp; Product Marketing</h4>
+            <div class="owner">José</div>
+            <p>Comprendre le client, positionner les offres, convertir la demande, mesurer la contribution. Transverse aux 3 lignes.</p>
+          </div>
+          <div class="pole-card">
+            <h4>Acquisition / Demand Gen</h4>
+            <div class="owner">Victoria</div>
+            <p>Plan marketing, stratégie et production de contenus, SEO / SEA, événements, marque.</p>
+          </div>
+          <div class="pole-card">
+            <h4>Campaign Operations</h4>
+            <div class="owner">Delphine</div>
+            <p>Exécution des campagnes : email, téléprospection, logistique des événements, qualification des leads (MQL).</p>
+          </div>
+          <div class="pole-card">
+            <h4>Data &amp; GTM Engineering</h4>
+            <div class="owner">Sébastien + Martin</div>
+            <p>Qualité et enrichissement de la donnée, outils de ciblage et de segmentation, automatisation.</p>
+          </div>
+        </div>
+
+      </div>
+      <div class="company-logo"><img src="https://raw.githubusercontent.com/ayming-france/assets/main/logos/ayming-logo.png" alt="Ayming"></div>
+    </section>
+
+    <!-- ========== SLIDE 3 : POLE GROWTH & PRODUCT MARKETING ========== -->
+    <section class="slide" data-chapter="pole-gpm">
+      <div class="slide-inner insights">
+        <div class="slide-eyebrow">Pôle</div>
+        <h1 class="slide-title compact">Growth &amp; Product Marketing</h1>
+
+        <p class="intro-line">
+          Le pôle qui relie la compréhension du client à la croissance. Il détient la chaîne complète et il est le garant de la méthode go-to-market.
+        </p>
+
+        <div class="mandate-grid">
+          <div class="mandate-card">
+            <div class="step-name">1 · Comprendre</div>
+            <p>Piloter la recherche client (entretiens JTBD) : déclencheurs d'achat, freins, ressorts de rétention.</p>
+          </div>
+          <div class="mandate-card">
+            <div class="step-name">2 · Positionner</div>
+            <p>Positionnement des offres, avec les équipes conseil et les market leaders : proposition de valeur, différenciation, OAV.</p>
+          </div>
+          <div class="mandate-card">
+            <div class="step-name">3 · Convertir</div>
+            <p>Efficacité de conversion du parcours : site, pages d'offres, expérimentation growth.</p>
+          </div>
+          <div class="mandate-card">
+            <div class="step-name">4 · Mesurer</div>
+            <p>Modèles de mesure de la contribution marketing : attribution, CPL, ROI, pilotage.</p>
+          </div>
+        </div>
+      </div>
+      <div class="company-logo"><img src="https://raw.githubusercontent.com/ayming-france/assets/main/logos/ayming-logo.png" alt="Ayming"></div>
+    </section>
+
+    <!-- ========== SLIDE 4 : POSTE ========== -->
+    <section class="slide compact-fit" data-chapter="poste">
+      <div class="slide-inner insights">
+        <div class="slide-eyebrow">Poste</div>
+        <h1 class="slide-title compact">Responsable Growth &amp; Product Marketing</h1>
+
+        <div class="two-col">
+          <div>
+            <div class="col-block">
+              <h3>Nature &amp; mission</h3>
+              <p style="font-size:12.5px; color:var(--ay-text); line-height:1.5; margin:0 0 6px;">
+                Poste de pôle, transverse aux 3 lignes. Il détient et opère le growth (recherche client,
+                conversion, mesure) ; sur le marketing des offres, il apporte la méthode et le positionnement,
+                co-construits avec les équipes conseil et les market leaders.
+              </p>
+            </div>
+            <div class="col-block">
+              <h3>Responsabilités</h3>
+              <ul class="role-list">
+                <li>Piloter la recherche client (entretiens JTBD) et en faire le socle du positionnement et des offres.</li>
+                <li>Définir le positionnement et la proposition de valeur des offres, avec les équipes conseil ; produire l'OAV de référence à partir d'un template réutilisable.</li>
+                <li>Détenir et faire vivre le processus go-to-market, et en piloter les étapes amont.</li>
+                <li>Fournir aux porteurs de ligne et à Acquisition les briefs de messaging (offres, pages, campagnes).</li>
+                <li>Optimiser la conversion du site et du parcours ; concevoir et mener les expérimentations growth.</li>
+                <li>Détenir les modèles d'attribution et de pilotage de la performance (contribution, CPL, ROI).</li>
+                <li>Apporter l'analyse de la rétention et du potentiel de développement client.</li>
+                <li>Membre des instances de gouvernance groupe (Pardot / Site / SLT).</li>
+              </ul>
+            </div>
+          </div>
+
+          <div>
+            <div class="col-block">
+              <h3 class="muted">Ce que le poste ne fait pas</h3>
+              <ul class="role-list exclude">
+                <li>Ne porte pas le plan marketing d'une ligne : cela revient aux porteurs de ligne / Acquisition.</li>
+                <li>N'exécute pas les campagnes : cela revient à Campaign Operations.</li>
+                <li>Ne rédige pas les pages d'offres ni les contenus du site : il en fournit le brief de messaging. La rédaction revient à Acquisition.</li>
+                <li>Ne produit pas la donnée d'enrichissement et de ciblage : cela revient à Data &amp; GTM Engineering.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="company-logo"><img src="https://raw.githubusercontent.com/ayming-france/assets/main/logos/ayming-logo.png" alt="Ayming"></div>
+    </section>
+
+    <!-- ========== SLIDE 5 : PROCESSUS GO-TO-MARKET ========== -->
+    <section class="slide compact-fit" data-chapter="gtm">
+      <div class="slide-inner insights">
+        <div class="slide-eyebrow">Processus</div>
+        <h1 class="slide-title compact">Le go-to-market est un processus, pas un pôle</h1>
+
+        <p class="intro-line">
+          Le go-to-market n'est pas une équipe : c'est la séquence par laquelle les pôles collaborent pour
+          lancer une offre. Growth &amp; Product Marketing en est le garant méthodologique ; chaque lancement
+          est orchestré par le porteur de ligne.
+        </p>
+
+        <table class="data-table gtm-table">
+          <thead>
+            <tr><th>Étape</th><th>Responsable</th><th>Livrable</th></tr>
+          </thead>
+          <tbody>
+            <tr class="gpm"><td>1 &middot; Cadrage de l'offre</td><td class="resp">Porteur de ligne + Growth &amp; PM</td><td>Brief d'offre</td></tr>
+            <tr class="gpm"><td>2 &middot; Recherche client (JTBD)</td><td class="resp">Growth &amp; PM</td><td>Déclencheurs, freins, verbatims</td></tr>
+            <tr class="gpm"><td>3 &middot; Positionnement de l'offre</td><td class="resp">Growth &amp; PM</td><td>Positionnement validé</td></tr>
+            <tr class="gpm"><td>4 &middot; OAV &amp; briefs de messaging</td><td class="resp">Growth &amp; PM</td><td>OAV de référence + brief des pages</td></tr>
+            <tr><td>5 &middot; Plan de lancement</td><td>Porteur de ligne / Acquisition</td><td>Canaux, calendrier, contenus</td></tr>
+            <tr><td>6 &middot; Données de ciblage</td><td>Data &amp; GTM Engineering</td><td>Listes cibles enrichies</td></tr>
+            <tr><td>7 &middot; Exécution des campagnes</td><td>Campaign Operations</td><td>Campagnes lancées</td></tr>
+            <tr class="gpm"><td>8 &middot; Conversion, mesure, itération</td><td class="resp">Growth &amp; PM</td><td>Tableau de contribution + itérations</td></tr>
+          </tbody>
+        </table>
+
+      </div>
+      <div class="company-logo"><img src="https://raw.githubusercontent.com/ayming-france/assets/main/logos/ayming-logo.png" alt="Ayming"></div>
+    </section>
+
+    <!-- ========== SLIDE 6 : CE QUE JE PROPOSE ========== -->
+    <section class="slide" data-chapter="propose">
+      <div class="slide-inner insights">
+        <div class="slide-eyebrow">Ce que je propose</div>
+        <h1 class="slide-title compact">Remettre le « market » dans le marketing</h1>
+
+        <p class="intro-line">Trois points à valider ensemble.</p>
+
+        <div class="propose-grid">
+          <div class="propose-card">
+            <div class="propose-num">1</div>
+            <h4>Intitulé</h4>
+            <p>Responsable Growth &amp; Product Marketing, au niveau pôle, au même rang que les autres pôles marketing.</p>
+          </div>
+          <div class="propose-card">
+            <div class="propose-num">2</div>
+            <h4>Périmètre</h4>
+            <p>Transverse aux 3 lignes métier, avec la ligne RH en phase pilote. Un rôle, pas une affectation à une ligne.</p>
+          </div>
+          <div class="propose-card">
+            <div class="propose-num">3</div>
+            <h4>Mandat</h4>
+            <p>La discipline complète : comprendre, positionner, convertir, mesurer. Au-delà de la seule performance et du reporting.</p>
+          </div>
+        </div>
+
+        <div class="insight-card success">
+          <h4>La différence</h4>
+          <p>Le funnel mesure l'activité. Ce poste remet le client au centre : c'est la différence entre faire
+          le « -ing » du marketing et comprendre son « market ».</p>
+        </div>
+      </div>
+      <div class="company-logo"><img src="https://raw.githubusercontent.com/ayming-france/assets/main/logos/ayming-logo.png" alt="Ayming"></div>
+    </section>
+
+  </main>
+
+  <div class="keyboard-hint">
+    <span><span class="key" id="key-prev">&larr;</span><span class="key" id="key-next">&rarr;</span> Naviguer</span>
+    <span><span class="key" id="key-fullscreen">F</span> Plein écran</span>
+  </div>
+
+  <div class="deck-credit">José J Encarnación Saiter | Marketing France · 22 mai 2026</div>
+
+  <script src="https://ayming-france.github.io/assets/engine/slides.js"></script>
+  <script>
+    (function () {
+      var cover = document.querySelector('.slide.cover');
+      var credit = document.querySelector('.deck-credit');
+      if (!cover || !credit) return;
+      var sync = function () {
+        credit.style.visibility = cover.classList.contains('active') ? 'hidden' : 'visible';
+      };
+      sync();
+      new MutationObserver(sync).observe(cover, { attributes: true, attributeFilter: ['class'] });
+    })();
+  </script>
+
+</body>
+</html>
