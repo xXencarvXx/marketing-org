@@ -65,9 +65,9 @@
     .step-circle { width: 44px; height: 44px; border-radius: 50%; background: var(--gradient-brand-horizontal); color: #fff; font-weight: 700; font-size: 19px; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-sm); margin-bottom: 12px; }
     .step-item h4 { font-size: 15px; font-weight: 700; color: var(--blue-dark); margin: 0 0 5px; }
     .step-item p { font-size: 12.5px; color: var(--text-gray); line-height: 1.45; margin: 0; text-align: left; }
-    .step-note { margin: 24px auto 0; max-width: 900px; text-align: center; font-size: 13px; color: var(--text-light); font-style: italic; }
+    .step-note { margin: 24px auto 0; max-width: 940px; text-align: center; font-size: 13px; color: var(--text-light); font-style: italic; }
 
-    /* Org placement / trajectory */
+    /* Trajectory / layers */
     .traj { display: flex; align-items: center; gap: 22px; width: 100%; max-width: 980px; margin: 30px auto 0; }
     .traj-node { flex: 1; background: var(--bg-white); border: 1px solid var(--bg-subtle); border-radius: 18px; padding: 24px; box-shadow: var(--shadow-md); text-align: center; }
     .traj-node.target { border: 2px solid var(--blue-primary); background: linear-gradient(135deg, #f8fafc 0%, #eaf6fc 100%); }
@@ -99,10 +99,7 @@
     .closing-note h4 { font-size: 15px; font-weight: 700; color: var(--blue-dark); margin: 0 0 6px; }
     .closing-note p { font-size: 13.5px; color: var(--text-dark); line-height: 1.55; margin: 0; }
 
-    /* Team names + personal credentials */
-    .comparison-table .who { display: block; font-size: 12px; color: var(--text-gray); font-weight: 500; margin-top: 3px; }
-    .team-gap { margin: 24px auto 0; max-width: 1120px; display: flex; align-items: center; gap: 12px; background: var(--overlay-blue-soft); border: 1px solid var(--bg-subtle); border-radius: 12px; padding: 14px 20px; font-size: 14.5px; color: var(--blue-dark); }
-    .team-gap svg { width: 22px; height: 22px; color: var(--blue-primary); flex-shrink: 0; }
+    /* Personal credentials */
     .creds { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 12px; margin: 24px auto 0; max-width: 1000px; }
     .cred { display: inline-flex; align-items: center; gap: 7px; background: var(--bg-white); border: 1px solid var(--bg-subtle); border-radius: 9999px; padding: 8px 15px; font-size: 12.5px; font-weight: 600; color: var(--blue-dark); box-shadow: var(--shadow-sm); }
     .cred svg { width: 15px; height: 15px; color: var(--blue-primary); }
@@ -110,6 +107,16 @@
     .proof-strip svg { width: 24px; height: 24px; color: var(--blue-primary); flex-shrink: 0; margin-top: 1px; }
     .proof-strip span { font-size: 13.5px; color: var(--text-dark); line-height: 1.55; text-align: left; }
     .proof-strip b { color: var(--blue-dark); }
+
+    /* Part 2 org helpers */
+    .nav-section-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; color: var(--text-light); padding: 16px 20px 4px; }
+    .role-tag { display: inline-block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; color: var(--blue-primary); margin-bottom: 8px; }
+    .duo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; width: 100%; max-width: 900px; margin: 28px auto 0; }
+    .backbone { margin: 22px auto 0; max-width: 1080px; display: flex; align-items: center; gap: 16px; background: linear-gradient(135deg, #eaf6fc 0%, #d5eefb 100%); border: 2px solid var(--blue-primary); border-radius: 16px; padding: 18px 26px; box-shadow: var(--shadow-md); }
+    .backbone .bi { width: 44px; height: 44px; border-radius: 12px; background: var(--blue-primary); color: #fff; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .backbone .bi svg { width: 24px; height: 24px; }
+    .backbone h4 { font-size: 16px; font-weight: 700; color: var(--blue-dark); margin: 0 0 2px; }
+    .backbone p { font-size: 13px; color: var(--text-dark); margin: 0; text-align: left; }
 
     .chapter-nav { max-height: 100vh; overflow-y: auto; }
     .chapter-nav .nav-item {
@@ -131,21 +138,27 @@
       <span class="nav-subtitle">Marketing Operations</span>
     </div>
     <div class="nav-section">
+      <div class="nav-section-label">Partie 1 · Le rôle</div>
       <div class="nav-item active" data-slide="0"><span class="nav-item-number">01</span>Couverture</div>
       <div class="nav-item" data-slide="1"><span class="nav-item-number">02</span>Définition</div>
       <div class="nav-item" data-slide="2"><span class="nav-item-number">03</span>Ce que le rôle détient</div>
       <div class="nav-item" data-slide="3"><span class="nav-item-number">04</span>Le stack</div>
-      <div class="nav-item" data-slide="4"><span class="nav-item-number">05</span>Le rôle dans l'équipe</div>
-      <div class="nav-item" data-slide="5"><span class="nav-item-number">06</span>La valeur</div>
-      <div class="nav-item" data-slide="6"><span class="nav-item-number">07</span>Quand investir</div>
-      <div class="nav-item" data-slide="7"><span class="nav-item-number">08</span>Comment le construire</div>
-      <div class="nav-item" data-slide="8"><span class="nav-item-number">09</span>Où le rôle se place</div>
-      <div class="nav-item" data-slide="9"><span class="nav-item-number">10</span>Le marketing de demain</div>
-      <div class="nav-item" data-slide="10"><span class="nav-item-number">11</span>Ce que je propose</div>
+      <div class="nav-item" data-slide="4"><span class="nav-item-number">05</span>La valeur</div>
+      <div class="nav-item" data-slide="5"><span class="nav-item-number">06</span>Quand investir</div>
+      <div class="nav-item" data-slide="6"><span class="nav-item-number">07</span>Comment le construire</div>
+      <div class="nav-item" data-slide="7"><span class="nav-item-number">08</span>Le marketing de demain</div>
+    </div>
+    <div class="nav-section">
+      <div class="nav-section-label">Partie 2 · Notre organisation</div>
+      <div class="nav-item" data-slide="8"><span class="nav-item-number">09</span>Le niveau local</div>
+      <div class="nav-item" data-slide="9"><span class="nav-item-number">10</span>Le niveau global</div>
+      <div class="nav-item" data-slide="10"><span class="nav-item-number">11</span>Ma place</div>
     </div>
   </nav>
 
   <main class="presentation">
+
+    <!-- ========================= PARTIE 1 · LE ROLE ========================= -->
 
     <!-- ========== 0 · COUVERTURE ========== -->
     <section class="slide cover active" data-chapter="cover">
@@ -156,7 +169,7 @@
           </div>
           <h1 class="cover-title">Marketing<br>Operations</h1>
           <p class="cover-subtitle">Le rôle, sa valeur, et ce que je propose</p>
-          <p class="cover-credit">José J Encarnación Saiter · Marketing France · 22 juillet 2026</p>
+          <p class="cover-credit">José J Encarnación Saiter · Marketing France · 23 juillet 2026</p>
         </div>
         <div class="cover-right">
           <img class="cover-image" src="https://ayming-france.github.io/assets/imagery/stock/unsplash-1551288049-bebda4e38f71-w1200.jpg" alt="Marketing Operations">
@@ -223,7 +236,7 @@
           </div>
           <div class="feature-item">
             <div class="feature-icon"><i data-lucide="bar-chart-3"></i></div>
-            <div class="ft"><h4>Mesure et reporting</h4><p>Dashboards, suivi des KPI, modèles d'attribution.</p></div>
+            <div class="ft"><h4>Mesure et optimisation</h4><p>Dashboards, attribution, et optimisation du funnel et de la conversion.</p></div>
           </div>
           <div class="feature-item">
             <div class="feature-icon"><i data-lucide="wallet"></i></div>
@@ -239,7 +252,7 @@
           </div>
         </div>
 
-        <p class="highlight-line">Le tactique du quotidien et les chantiers de fond, dans une seule main.</p>
+        <p class="highlight-line">L'expérimentation sur les leviers et l'optimisation du funnel, la part growth tenue à l'intérieur du rôle.</p>
       </div>
     </section>
 
@@ -272,46 +285,7 @@
       </div>
     </section>
 
-    <!-- ========== 4 · LE ROLE DANS L'EQUIPE ========== -->
-    <section class="slide" data-chapter="voisins">
-      <div class="slide-inner">
-        <div class="slide-head">
-          <div class="slide-eyebrow">Le rôle dans l'équipe</div>
-          <h1 class="slide-title">Ce que le Marketing Operations n'est pas</h1>
-          <p class="slide-lead">Le rôle se comprend par contraste avec ses voisins. Chacun a son métier, le Marketing Operations tient ce qui les rend possibles.</p>
-        </div>
-
-        <table class="comparison-table" style="max-width:1120px;margin:26px auto 0;">
-          <thead>
-            <tr><th>Rôle voisin</th><th>Ce qu'il fait</th><th>Ce que fait le Marketing Operations</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Demand Generation</strong><span class="who">Victoria</span></td>
-              <td>Décide quelles campagnes lancer, détient la stratégie et le choix des audiences.</td>
-              <td>Construit le « comment », l'infrastructure qui les exécute efficacement.</td>
-            </tr>
-            <tr>
-              <td><strong>Campaign Operations</strong><span class="who">Delphine</span></td>
-              <td>Exécute les campagnes au quotidien.</td>
-              <td>Fournit les templates, l'automation et le système sous l'exécution.</td>
-            </tr>
-            <tr>
-              <td><strong>Analytics et enrichissement</strong><span class="who">Sébastien et Martin</span></td>
-              <td>Produit l'insight, enrichit et cible la donnée.</td>
-              <td>Tient le modèle et la gouvernance de donnée qui rendent l'analyse possible.</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <div class="team-gap">
-          <i data-lucide="plus-circle"></i>
-          <span>Trois rôles voisins, déjà tenus dans l'équipe. Le <b>Marketing Operations</b> reste à créer.</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== 5 · LA VALEUR ========== -->
+    <!-- ========== 4 · LA VALEUR ========== -->
     <section class="slide" data-chapter="valeur">
       <div class="slide-inner">
         <div class="slide-head">
@@ -342,7 +316,7 @@
         <div class="icon-grid cols-4" style="margin-top:30px;">
           <div class="feature-item">
             <div class="feature-icon"><i data-lucide="trending-up"></i></div>
-            <div class="ft"><h4>ROI</h4><p>Un coût par lead qui baisse, une conversion qui monte.</p></div>
+            <div class="ft"><h4>ROI</h4><p>Un coût par lead qui baisse, un funnel optimisé, une conversion qui monte.</p></div>
           </div>
           <div class="feature-item">
             <div class="feature-icon"><i data-lucide="handshake"></i></div>
@@ -360,7 +334,7 @@
       </div>
     </section>
 
-    <!-- ========== 6 · QUAND INVESTIR ========== -->
+    <!-- ========== 5 · QUAND INVESTIR ========== -->
     <section class="slide" data-chapter="quand">
       <div class="slide-inner">
         <div class="slide-head">
@@ -382,7 +356,7 @@
       </div>
     </section>
 
-    <!-- ========== 7 · COMMENT LE CONSTRUIRE ========== -->
+    <!-- ========== 6 · COMMENT LE CONSTRUIRE ========== -->
     <section class="slide" data-chapter="construire">
       <div class="slide-inner">
         <div class="slide-head">
@@ -404,43 +378,7 @@
       </div>
     </section>
 
-    <!-- ========== 8 · OU LE ROLE SE PLACE ========== -->
-    <section class="slide" data-chapter="placement">
-      <div class="slide-inner">
-        <div class="slide-head">
-          <div class="slide-eyebrow">Où le rôle se place</div>
-          <h1 class="slide-title">De la France vers une approche groupe</h1>
-          <p class="slide-lead">Le Marketing Operations reste rattaché au marketing. Sa mission de système, elle, a vocation à être partagée entre les pays.</p>
-        </div>
-
-        <div class="traj">
-          <div class="traj-node now">
-            <div class="tlabel">Aujourd'hui</div>
-            <h4>France</h4>
-            <p>Le rôle démarre là où le travail a déjà commencé.</p>
-          </div>
-          <div class="traj-arrow"><i data-lucide="arrow-right"></i></div>
-          <div class="traj-node target">
-            <div class="tlabel">La cible</div>
-            <h4>Groupe</h4>
-            <p>Un système partagé, parce que le stack et la donnée le sont déjà.</p>
-          </div>
-        </div>
-
-        <div class="layer-row">
-          <div class="layer group">
-            <div class="lh"><i data-lucide="building-2"></i>Centralisé au groupe</div>
-            <p>Le modèle de données, le standard de mesure, le processus et la gouvernance du stack. Le socle commun.</p>
-          </div>
-          <div class="layer local">
-            <div class="lh"><i data-lucide="map-pin"></i>Local par pays</div>
-            <p>L'exécution des campagnes et le terrain. Ce qui doit rester au plus près du marché.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== 9 · LE MARKETING DE DEMAIN ========== -->
+    <!-- ========== 7 · LE MARKETING DE DEMAIN ========== -->
     <section class="slide" data-chapter="demain">
       <div class="slide-inner">
         <div class="slide-head">
@@ -468,40 +406,113 @@
           <i data-lucide="sparkles"></i>
           <span><b>Le marketing de demain, je le pratique déjà.</b> Le stack d'attribution et d'analytics, je le tiens et je l'opère avec des agents IA. Une seule personne, un système complet.</span>
         </div>
+
+        <p class="step-note">Gartner, Forrester et la communauté MarketingOps.com convergent sur 2025-2026. Le rôle se transforme et gagne en poids stratégique, il ne disparaît pas.</p>
       </div>
     </section>
 
-    <!-- ========== 10 · CE QUE JE PROPOSE ========== -->
+    <!-- ========================= PARTIE 2 · NOTRE ORGANISATION ========================= -->
+
+    <!-- ========== 8 · LE NIVEAU LOCAL ========== -->
+    <section class="slide" data-chapter="local">
+      <div class="slide-inner">
+        <div class="slide-head">
+          <div class="slide-eyebrow">Partie 2 · Le niveau local</div>
+          <h1 class="slide-title">En France, une opération rattachée au terrain</h1>
+          <p class="slide-lead">Localement, les métiers marketing sont déjà en place. Ce qui les relie, le Marketing Operations, est le socle à faire porter clairement.</p>
+        </div>
+
+        <div class="propose-grid">
+          <div class="propose-card">
+            <span class="role-tag">Demand Gen</span>
+            <h4>Victoria</h4>
+            <p>Plan marketing, contenus, SEO et SEA, événements, marque.</p>
+          </div>
+          <div class="propose-card">
+            <span class="role-tag">Campaign Ops</span>
+            <h4>Delphine</h4>
+            <p>Exécution des campagnes, email, téléprospection, qualification des leads.</p>
+          </div>
+          <div class="propose-card">
+            <span class="role-tag">Data et enrichissement</span>
+            <h4>Sébastien et Martin</h4>
+            <p>Qualité et enrichissement de la donnée, ciblage, automatisation.</p>
+          </div>
+        </div>
+
+        <div class="backbone">
+          <div class="bi"><i data-lucide="layers"></i></div>
+          <div>
+            <h4>Marketing Operations, le socle qui les relie</h4>
+            <p>Le stack, la donnée, la mesure et le processus. Rattaché à la France, au service des trois métiers.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 9 · LE NIVEAU GLOBAL ========== -->
+    <section class="slide" data-chapter="global">
+      <div class="slide-inner">
+        <div class="slide-head">
+          <div class="slide-eyebrow">Partie 2 · Le niveau global</div>
+          <h1 class="slide-title">Au groupe, un socle qui a besoin d'un propriétaire</h1>
+          <p class="slide-lead">Le CRM, la donnée et la mesure sont partagés entre les pays. One Salesforce l'a montré. Ce socle appelle un propriétaire dédié, et par gouvernance ce n'est ni la direction ni un canal.</p>
+        </div>
+
+        <div class="duo-grid">
+          <div class="propose-card">
+            <span class="role-tag">CMO</span>
+            <h4>Un rôle de direction</h4>
+            <p>Il fixe le cap, arbitre et porte la vision. Il ne tient pas le socle au quotidien, c'est un autre métier.</p>
+          </div>
+          <div class="propose-card">
+            <span class="role-tag">Webmaster</span>
+            <h4>Un rôle de canal</h4>
+            <p>Le site est un canal, avec son propre propriétaire. La gouvernance veut des mains distinctes pour le site et pour le CRM.</p>
+          </div>
+        </div>
+
+        <div class="backbone">
+          <div class="bi"><i data-lucide="git-merge"></i></div>
+          <div>
+            <h4>Un propriétaire dédié, au niveau groupe</h4>
+            <p>Une seule personne responsable du socle CRM, donnée et mesure, distincte de la direction et des canaux.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 10 · MA PLACE ========== -->
     <section class="slide" data-chapter="propose">
       <div class="slide-inner">
         <div class="slide-head">
-          <div class="slide-eyebrow">Ce que je propose</div>
-          <h1 class="slide-title">Créer le rôle, et le placer juste</h1>
-          <p class="slide-lead">La méthode existe, le terrain est là. Le rôle reste à nommer, avant que le désordre des outils et de la donnée n'entame la performance.</p>
+          <div class="slide-eyebrow">Partie 2 · Ma place</div>
+          <h1 class="slide-title">Injecter la propriété dans ce rôle</h1>
+          <p class="slide-lead">Le rôle existe déjà en morceaux. Je propose de le porter, avec le travail comme preuve.</p>
         </div>
 
         <div class="propose-grid">
           <div class="propose-card">
             <div class="propose-num">1</div>
-            <h4>Le rôle</h4>
-            <p>Créer le Marketing Operations, centré sur le socle mesure, donnée et attribution. Un périmètre net, pas tout le marketing.</p>
+            <h4>One Salesforce</h4>
+            <p>J'étais dans le projet groupe. Je connais le socle et son alignement entre les pays.</p>
           </div>
           <div class="propose-card lead-card">
             <div class="propose-num">2</div>
-            <h4>Le niveau</h4>
-            <p>Le stack, la donnée et la mesure sont partagés entre les pays. Le rôle qui les tient a sa place au niveau groupe.</p>
+            <h4>Le framework performance marketing</h4>
+            <p>Je l'ai mis en avant. La mesure et l'attribution, du site jusqu'au CRM, de bout en bout.</p>
           </div>
           <div class="propose-card">
             <div class="propose-num">3</div>
-            <h4>Par où je commence</h4>
-            <p>Je suis en France, et mon travail y mène déjà. L'alignement du site au niveau groupe et le projet One Salesforce ont donné le projet performance marketing.</p>
+            <h4>L'analytics avec la Data</h4>
+            <p>Je le construis avec l'équipe Data. Le socle de mesure prend forme.</p>
           </div>
         </div>
 
         <div class="creds">
           <span class="cred"><i data-lucide="link"></i>Chaîne d'attribution du site au CRM</span>
           <span class="cred"><i data-lucide="database"></i>Entrepôt analytique GA4, Search Console, Bing</span>
-          <span class="cred"><i data-lucide="bar-chart-3"></i>Migration Databricks et Power BI</span>
+          <span class="cred"><i data-lucide="sparkles"></i>Opéré avec des agents IA</span>
         </div>
       </div>
     </section>
