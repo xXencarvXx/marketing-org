@@ -7,166 +7,109 @@
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://ayming-france.github.io/assets/engine/slides.css">
   <style>
-    :root {
-      --ay-primary: #11a9e6;
-      --ay-accent: #0da4e8;
-      --ay-dark: #00456d;
-      --ay-success: #0ab38c;
-      --ay-warning: #f59e0b;
-      --ay-danger: #ef4444;
-      --ay-text: #0f172a;
-      --ay-gray: #6b7280;
-      --ay-light: #9ca3af;
-      --ay-bg-subtle: #eef2f6;
-      --ay-bg-light: #f8fafc;
-    }
+    /* Local helpers over the shared engine (slides.css supplies the brand vars, the cover,
+       feature-item / feature-icon, stats-row / stat-card, comparison-table, the gradient
+       brand banner). Everything here reuses those tokens, it does not reinvent them. */
 
-    .slide-inner.insights { padding: 56px 72px; }
-    .slide-title.compact { margin-bottom: 24px; font-size: 32px; }
+    .slide-head { text-align: center; margin-bottom: 8px; }
     .slide-eyebrow {
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--ay-primary);
-      margin-bottom: 8px;
+      text-transform: uppercase; letter-spacing: 2px; font-size: 12px;
+      font-weight: 700; color: var(--blue-primary); margin-bottom: 10px;
     }
-    .intro-line {
-      font-size: 14px;
-      color: var(--ay-text);
-      line-height: 1.55;
-      margin: 0 0 22px 0;
-      max-width: 980px;
+    .slide-title { color: var(--blue-dark); }
+    .slide-lead {
+      font-size: 17px; line-height: 1.6; color: var(--text-gray);
+      max-width: 880px; margin: 14px auto 0; text-align: center;
+    }
+    .cover-credit { margin-top: 22px; font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.9); }
+
+    /* Icon-card grid, reuses .feature-item + .feature-icon from the engine */
+    .icon-grid { display: grid; width: 100%; gap: 24px 36px; margin: 34px auto 0; }
+    .icon-grid.cols-4 { grid-template-columns: repeat(4, 1fr); max-width: 1140px; }
+    .icon-grid.cols-3 { grid-template-columns: repeat(3, 1fr); max-width: 1000px; }
+    .icon-grid .feature-icon { width: 46px; height: 46px; border-radius: 13px; }
+    .icon-grid .feature-icon svg { width: 22px; height: 22px; }
+    .feature-item .ft h4 { font-size: 15px; font-weight: 700; color: var(--blue-dark); margin: 0 0 4px; }
+    .feature-item .ft p { font-size: 12.5px; line-height: 1.45; color: var(--text-gray); margin: 0; text-align: left; }
+
+    .highlight-line {
+      margin: 30px auto 0; max-width: 820px; text-align: center;
+      font-size: 16px; font-weight: 600; color: var(--blue-dark);
     }
 
-    /* Card grids */
-    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin: 22px 0; }
-    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 20px 0; }
+    /* Stack slide split */
+    .split { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 40px; width: 100%; max-width: 1120px; margin: 32px auto 0; align-items: stretch; }
+    .stack-list { display: flex; flex-direction: column; gap: 12px; }
+    .stack-row { display: flex; align-items: center; gap: 14px; background: var(--bg-white); border: 1px solid var(--bg-subtle); border-radius: 12px; padding: 12px 16px; box-shadow: var(--shadow-sm); }
+    .stack-row .ic { width: 38px; height: 38px; border-radius: 10px; background: var(--overlay-blue-soft); color: var(--blue-primary); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .stack-row .ic svg { width: 20px; height: 20px; }
+    .stack-row b { font-size: 14px; color: var(--blue-dark); display: block; }
+    .stack-row span { font-size: 12px; color: var(--text-gray); }
+    .hero-panel { background: var(--bg-light); border: 1px solid var(--bg-subtle); border-radius: 20px; padding: 34px 34px; display: flex; flex-direction: column; justify-content: center; box-shadow: var(--shadow-md); }
+    .hero-num { font-size: 64px; font-weight: 700; line-height: 1; background: var(--gradient-brand-horizontal); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero-cap { font-size: 14px; color: var(--text-gray); margin-top: 8px; }
+    .hero-panel p { font-size: 14.5px; line-height: 1.55; color: var(--text-dark); margin: 22px 0 0; text-align: left; }
 
-    .card {
-      background: #fff;
-      border: 1px solid #e5e7eb;
-      border-top: 3px solid var(--ay-primary);
-      border-radius: 10px;
-      padding: 16px 18px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-    }
-    .card.highlight {
-      border: 2px solid var(--ay-primary);
-      border-top: 2px solid var(--ay-primary);
-      background: linear-gradient(135deg, #f8fafc 0%, #eaf6fc 100%);
-      position: relative;
-    }
-    .card .card-label {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--ay-dark);
-      margin-bottom: 6px;
-    }
-    .card p {
-      font-size: 12.5px;
-      color: var(--ay-text);
-      line-height: 1.45;
-      margin: 0;
-      text-align: left;
-    }
-    .card .num {
-      display: inline-flex;
-      width: 28px; height: 28px;
-      border-radius: 50%;
-      background: var(--ay-primary);
-      color: #fff;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 13px;
-      margin-bottom: 10px;
-    }
-    .card-badge {
-      position: absolute;
-      top: 12px; right: 14px;
-      background: var(--ay-primary);
-      color: #fff;
-      font-size: 10px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      padding: 3px 9px;
-      border-radius: 20px;
-    }
+    /* Signals checklist */
+    .checklist { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 40px; width: 100%; max-width: 1020px; margin: 30px auto 0; }
+    .check-item { display: flex; align-items: flex-start; gap: 13px; }
+    .check-item .ic { color: var(--blue-primary); flex-shrink: 0; margin-top: 1px; }
+    .check-item .ic svg { width: 20px; height: 20px; }
+    .check-item b { font-size: 14px; color: var(--blue-dark); }
+    .check-item p { font-size: 12.5px; color: var(--text-gray); margin: 2px 0 0; text-align: left; }
+    .threshold { margin: 28px auto 0; background: var(--gradient-brand-horizontal); color: #fff; border-radius: 14px; padding: 15px 26px; font-size: 15px; font-weight: 600; text-align: center; max-width: 1020px; box-shadow: var(--shadow-md); }
 
-    /* Insight callout */
-    .insight-card {
-      background: linear-gradient(135deg, #f8fafc 0%, #eef2f6 100%);
-      border-left: 4px solid var(--ay-primary);
-      border-radius: 10px;
-      padding: 16px 20px;
-      text-align: left;
-    }
-    .insight-card.success { border-left-color: var(--ay-success); }
-    .insight-card.warning { border-left-color: var(--ay-warning); }
-    .insight-card h4 {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--ay-dark);
-      margin: 0 0 6px 0;
-    }
-    .insight-card p {
-      font-size: 13px;
-      color: var(--ay-text);
-      line-height: 1.5;
-      margin: 0;
-    }
+    /* Method steps */
+    .step-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px 28px; width: 100%; max-width: 1100px; margin: 32px auto 0; }
+    .step-item { background: var(--bg-white); border: 1px solid var(--bg-subtle); border-radius: 16px; padding: 22px 22px; box-shadow: var(--shadow-md); }
+    .step-circle { width: 44px; height: 44px; border-radius: 50%; background: var(--gradient-brand-horizontal); color: #fff; font-weight: 700; font-size: 19px; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-sm); margin-bottom: 12px; }
+    .step-item h4 { font-size: 15px; font-weight: 700; color: var(--blue-dark); margin: 0 0 5px; }
+    .step-item p { font-size: 12.5px; color: var(--text-gray); line-height: 1.45; margin: 0; text-align: left; }
+    .step-note { margin: 24px auto 0; max-width: 900px; text-align: center; font-size: 13px; color: var(--text-light); font-style: italic; }
 
-    /* Data table */
-    .data-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 12.5px;
-      background: #fff;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-    }
-    .data-table thead th {
-      background: var(--ay-dark);
-      color: #fff;
-      text-align: left;
-      padding: 10px 14px;
-      font-weight: 600;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.4px;
-    }
-    .data-table tbody td {
-      padding: 12px 14px;
-      border-bottom: 1px solid #f1f5f9;
-      color: var(--ay-text);
-      line-height: 1.45;
-      vertical-align: top;
-    }
-    .data-table tbody td.role { font-weight: 700; color: var(--ay-dark); width: 22%; }
-    .data-table tbody td.marops { background: #eaf6fc; font-weight: 600; color: var(--ay-dark); }
+    /* Org placement / trajectory */
+    .traj { display: flex; align-items: center; gap: 22px; width: 100%; max-width: 980px; margin: 30px auto 0; }
+    .traj-node { flex: 1; background: var(--bg-white); border: 1px solid var(--bg-subtle); border-radius: 18px; padding: 24px; box-shadow: var(--shadow-md); text-align: center; }
+    .traj-node.target { border: 2px solid var(--blue-primary); background: linear-gradient(135deg, #f8fafc 0%, #eaf6fc 100%); }
+    .traj-node .tlabel { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; color: var(--blue-primary); }
+    .traj-node h4 { font-size: 22px; color: var(--blue-dark); margin: 8px 0 6px; }
+    .traj-node p { font-size: 13px; color: var(--text-gray); text-align: center; margin: 0; }
+    .traj-arrow { color: var(--blue-primary); flex-shrink: 0; display: flex; align-items: center; }
+    .traj-arrow svg { width: 34px; height: 34px; }
+    .layer-row { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; width: 100%; max-width: 980px; margin: 22px auto 0; }
+    .layer { border-radius: 14px; padding: 18px 22px; }
+    .layer.group { background: linear-gradient(135deg, #f8fafc 0%, #eaf6fc 100%); border: 1px solid var(--bg-subtle); }
+    .layer.local { background: var(--bg-light); border: 1px solid var(--bg-subtle); }
+    .layer .lh { display: flex; align-items: center; gap: 9px; font-size: 13px; font-weight: 700; color: var(--blue-dark); margin-bottom: 6px; }
+    .layer .lh svg { width: 18px; height: 18px; color: var(--blue-primary); }
+    .layer p { font-size: 12.5px; color: var(--text-gray); line-height: 1.45; margin: 0; text-align: left; }
 
-    .footnote { font-size: 11px; color: var(--ay-light); margin-top: 14px; font-style: italic; }
-
-    /* Compact fit for dense slides */
-    .compact-fit .slide-inner.insights { padding-top: 30px; padding-bottom: 14px; }
-    .compact-fit .slide-title.compact { margin-bottom: 16px; }
-
-    /* Author credit */
-    .deck-credit {
-      position: fixed;
-      bottom: 18px; left: 26px;
-      font-size: 11px; font-weight: 700;
-      color: var(--ay-gray); letter-spacing: 0.3px;
-      z-index: 90; white-space: nowrap;
-      pointer-events: none;
+    /* Proposal cards */
+    .propose-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; width: 100%; max-width: 1080px; margin: 30px auto 0; }
+    .propose-card { background: var(--bg-white); border: 1px solid var(--bg-subtle); border-radius: 18px; padding: 26px 24px; box-shadow: var(--shadow-md); position: relative; }
+    .propose-card.lead-card { border: 2px solid var(--blue-primary); background: linear-gradient(135deg, #f8fafc 0%, #eaf6fc 100%); }
+    .propose-num { width: 40px; height: 40px; border-radius: 50%; background: var(--gradient-brand-horizontal); color: #fff; font-weight: 700; font-size: 17px; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-sm); margin-bottom: 14px; }
+    .propose-card h4 { font-size: 16px; font-weight: 700; color: var(--blue-dark); margin: 0 0 7px; }
+    .propose-card p { font-size: 13px; color: var(--text-gray); line-height: 1.5; margin: 0; text-align: left; }
+    .closing-note {
+      margin: 28px auto 0; max-width: 900px; background: var(--bg-light);
+      border-left: 4px solid var(--gradient-green-end); border-radius: 12px;
+      padding: 18px 24px; text-align: left;
     }
-    .cover-credit {
-      margin-top: 20px; font-size: 12px; font-weight: 700;
-      color: #fff; letter-spacing: 0.3px; opacity: 0.9;
-    }
+    .closing-note h4 { font-size: 15px; font-weight: 700; color: var(--blue-dark); margin: 0 0 6px; }
+    .closing-note p { font-size: 13.5px; color: var(--text-dark); line-height: 1.55; margin: 0; }
+
+    /* Team names + personal credentials */
+    .comparison-table .who { display: block; font-size: 12px; color: var(--text-gray); font-weight: 500; margin-top: 3px; }
+    .team-gap { margin: 24px auto 0; max-width: 1120px; display: flex; align-items: center; gap: 12px; background: var(--overlay-blue-soft); border: 1px solid var(--bg-subtle); border-radius: 12px; padding: 14px 20px; font-size: 14.5px; color: var(--blue-dark); }
+    .team-gap svg { width: 22px; height: 22px; color: var(--blue-primary); flex-shrink: 0; }
+    .creds { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 12px; margin: 24px auto 0; max-width: 1000px; }
+    .cred { display: inline-flex; align-items: center; gap: 7px; background: var(--bg-white); border: 1px solid var(--bg-subtle); border-radius: 9999px; padding: 8px 15px; font-size: 12.5px; font-weight: 600; color: var(--blue-dark); box-shadow: var(--shadow-sm); }
+    .cred svg { width: 15px; height: 15px; color: var(--blue-primary); }
+    .proof-strip { margin: 28px auto 0; max-width: 1100px; display: flex; align-items: flex-start; gap: 14px; background: linear-gradient(135deg, #f8fafc 0%, #eaf6fc 100%); border: 1px solid var(--bg-subtle); border-radius: 14px; padding: 18px 24px; box-shadow: var(--shadow-sm); }
+    .proof-strip svg { width: 24px; height: 24px; color: var(--blue-primary); flex-shrink: 0; margin-top: 1px; }
+    .proof-strip span { font-size: 13.5px; color: var(--text-dark); line-height: 1.55; text-align: left; }
+    .proof-strip b { color: var(--blue-dark); }
 
     .chapter-nav { max-height: 100vh; overflow-y: auto; }
     .chapter-nav .nav-item {
@@ -179,7 +122,6 @@
 </head>
 <body>
 
-  <!-- Chapter Navigation -->
   <nav class="chapter-nav">
     <div class="nav-toggle"><span></span><span></span><span></span></div>
     <div class="nav-header">
@@ -197,15 +139,15 @@
       <div class="nav-item" data-slide="5"><span class="nav-item-number">06</span>La valeur</div>
       <div class="nav-item" data-slide="6"><span class="nav-item-number">07</span>Quand investir</div>
       <div class="nav-item" data-slide="7"><span class="nav-item-number">08</span>Comment le construire</div>
-      <div class="nav-item" data-slide="8"><span class="nav-item-number">09</span>Ce que je propose</div>
+      <div class="nav-item" data-slide="8"><span class="nav-item-number">09</span>Où le rôle se place</div>
+      <div class="nav-item" data-slide="9"><span class="nav-item-number">10</span>Le marketing de demain</div>
+      <div class="nav-item" data-slide="10"><span class="nav-item-number">11</span>Ce que je propose</div>
     </div>
   </nav>
 
-  <div class="slide-counter"><span class="current">1</span>/9</div>
-
   <main class="presentation">
 
-    <!-- ========== SLIDE 0 : COUVERTURE ========== -->
+    <!-- ========== 0 · COUVERTURE ========== -->
     <section class="slide cover active" data-chapter="cover">
       <div class="cover-layout">
         <div class="cover-left">
@@ -214,7 +156,7 @@
           </div>
           <h1 class="cover-title">Marketing<br>Operations</h1>
           <p class="cover-subtitle">Le rôle, sa valeur, et ce que je propose</p>
-          <p class="cover-credit">José J Encarnación Saiter | Marketing France · 21 juillet 2026</p>
+          <p class="cover-credit">José J Encarnación Saiter · Marketing France · 22 juillet 2026</p>
         </div>
         <div class="cover-right">
           <img class="cover-image" src="https://ayming-france.github.io/assets/imagery/stock/unsplash-1551288049-bebda4e38f71-w1200.jpg" alt="Marketing Operations">
@@ -222,357 +164,357 @@
       </div>
     </section>
 
-    <!-- ========== SLIDE 1 : DEFINITION ========== -->
+    <!-- ========== 1 · DEFINITION ========== -->
     <section class="slide" data-chapter="definition">
-      <div class="slide-inner insights">
-        <div class="slide-eyebrow">Définition</div>
-        <h1 class="slide-title compact">La fonction qui fait tourner le marketing</h1>
+      <div class="slide-inner">
+        <div class="slide-head">
+          <div class="slide-eyebrow">Définition</div>
+          <h1 class="slide-title">La fonction qui fait tourner le marketing</h1>
+          <p class="slide-lead">
+            Le Marketing Operations gère la technologie, les processus, la donnée et les workflows pour que les
+            équipes exécutent efficacement et mesurent juste. Il n'est pas un créateur de campagnes. Il est
+            l'infrastructure sur laquelle elles s'appuient.
+          </p>
+        </div>
 
-        <p class="intro-line">
-          Le Marketing Operations gère la technologie, les processus, la donnée et les workflows pour que les
-          équipes exécutent efficacement et mesurent juste. Il n'est pas un créateur de campagnes. Il est
-          l'infrastructure sur laquelle elles s'appuient.
-        </p>
-
-        <div class="grid-3">
-          <div class="card">
-            <div class="card-label">Stratégie</div>
-            <p>Aligner les outils, la donnée et les processus sur les objectifs marketing.</p>
+        <div class="icon-grid cols-3">
+          <div class="feature-item">
+            <div class="feature-icon"><i data-lucide="target"></i></div>
+            <div class="ft"><h4>Stratégie</h4><p>Aligner les outils, la donnée et les processus sur les objectifs marketing.</p></div>
           </div>
-          <div class="card">
-            <div class="card-label">Technologie</div>
-            <p>Détenir et connecter le stack : plateformes, automation, analytics.</p>
+          <div class="feature-item">
+            <div class="feature-icon"><i data-lucide="layers"></i></div>
+            <div class="ft"><h4>Technologie</h4><p>Détenir et connecter le stack, des plateformes à l'analytics.</p></div>
           </div>
-          <div class="card">
-            <div class="card-label">Exécution</div>
-            <p>Rendre le lancement d'une campagne rapide, propre et mesurable.</p>
+          <div class="feature-item">
+            <div class="feature-icon"><i data-lucide="zap"></i></div>
+            <div class="ft"><h4>Exécution</h4><p>Rendre le lancement d'une campagne rapide, propre et mesurable.</p></div>
           </div>
         </div>
 
-        <div class="insight-card">
-          <h4>L'idée clé</h4>
-          <p>Le Marketing Operations est à l'intersection de la stratégie, de la technologie et de l'exécution.
-          C'est l'infrastructure, pas la campagne.</p>
-        </div>
+        <p class="highlight-line">À l'intersection de la stratégie, de la technologie et de l'exécution. L'infrastructure, pas la campagne.</p>
       </div>
-      <div class="company-logo"><img src="https://raw.githubusercontent.com/ayming-france/assets/main/logos/ayming-logo.png" alt="Ayming"></div>
     </section>
 
-    <!-- ========== SLIDE 2 : CE QUE LE ROLE DETIENT ========== -->
-    <section class="slide compact-fit" data-chapter="perimetre">
-      <div class="slide-inner insights">
-        <div class="slide-eyebrow">Périmètre</div>
-        <h1 class="slide-title compact">Huit domaines, un seul rôle</h1>
+    <!-- ========== 2 · CE QUE LE ROLE DETIENT ========== -->
+    <section class="slide" data-chapter="perimetre">
+      <div class="slide-inner">
+        <div class="slide-head">
+          <div class="slide-eyebrow">Périmètre</div>
+          <h1 class="slide-title">Huit domaines, un seul rôle</h1>
+        </div>
 
-        <div class="grid-4">
-          <div class="card">
-            <div class="card-label">Stack martech</div>
-            <p>Administrer les plateformes, l'automation, l'analytics et les intégrations.</p>
+        <div class="icon-grid cols-4">
+          <div class="feature-item">
+            <div class="feature-icon"><i data-lucide="layers"></i></div>
+            <div class="ft"><h4>Stack martech</h4><p>Administrer les plateformes, l'automation, l'analytics et les intégrations.</p></div>
           </div>
-          <div class="card">
-            <div class="card-label">Processus</div>
-            <p>Cartographier les workflows, lever les goulots, redessiner pour l'efficacité.</p>
+          <div class="feature-item">
+            <div class="feature-icon"><i data-lucide="git-branch"></i></div>
+            <div class="ft"><h4>Processus</h4><p>Cartographier les workflows, lever les goulots, redessiner pour l'efficacité.</p></div>
           </div>
-          <div class="card">
-            <div class="card-label">Donnée &amp; gouvernance</div>
-            <p>Santé de la base, dédoublonnage, standardisation, conformité.</p>
+          <div class="feature-item">
+            <div class="feature-icon"><i data-lucide="database"></i></div>
+            <div class="ft"><h4>Donnée et gouvernance</h4><p>Santé de la base, dédoublonnage, standardisation, conformité.</p></div>
           </div>
-          <div class="card">
-            <div class="card-label">Support à l'exécution</div>
-            <p>Templates, workflows d'automation, landing pages.</p>
+          <div class="feature-item">
+            <div class="feature-icon"><i data-lucide="layout-template"></i></div>
+            <div class="ft"><h4>Support à l'exécution</h4><p>Templates, workflows d'automation, landing pages.</p></div>
           </div>
-          <div class="card">
-            <div class="card-label">Mesure &amp; reporting</div>
-            <p>Dashboards, suivi des KPI, modèles d'attribution.</p>
+          <div class="feature-item">
+            <div class="feature-icon"><i data-lucide="bar-chart-3"></i></div>
+            <div class="ft"><h4>Mesure et reporting</h4><p>Dashboards, suivi des KPI, modèles d'attribution.</p></div>
           </div>
-          <div class="card">
-            <div class="card-label">Budget &amp; ressources</div>
-            <p>Suivi des dépenses, prévision, coûts des outils.</p>
+          <div class="feature-item">
+            <div class="feature-icon"><i data-lucide="wallet"></i></div>
+            <div class="ft"><h4>Budget et ressources</h4><p>Suivi des dépenses, prévision, coûts des outils.</p></div>
           </div>
-          <div class="card">
-            <div class="card-label">Fournisseurs</div>
-            <p>Évaluer et piloter les prestataires technologiques.</p>
+          <div class="feature-item">
+            <div class="feature-icon"><i data-lucide="handshake"></i></div>
+            <div class="ft"><h4>Fournisseurs</h4><p>Évaluer et piloter les prestataires technologiques.</p></div>
           </div>
-          <div class="card">
-            <div class="card-label">Adoption &amp; formation</div>
-            <p>Documentation, formation, adoption des plateformes.</p>
+          <div class="feature-item">
+            <div class="feature-icon"><i data-lucide="graduation-cap"></i></div>
+            <div class="ft"><h4>Adoption et formation</h4><p>Documentation, formation, adoption des plateformes.</p></div>
           </div>
         </div>
 
-        <p class="footnote">Le rôle balance le tactique du quotidien et les chantiers de fond. Les deux, dans une seule main.</p>
+        <p class="highlight-line">Le tactique du quotidien et les chantiers de fond, dans une seule main.</p>
       </div>
-      <div class="company-logo"><img src="https://raw.githubusercontent.com/ayming-france/assets/main/logos/ayming-logo.png" alt="Ayming"></div>
     </section>
 
-    <!-- ========== SLIDE 3 : LE STACK ========== -->
-    <section class="slide compact-fit" data-chapter="stack">
-      <div class="slide-inner insights">
-        <div class="slide-eyebrow">Le stack</div>
-        <h1 class="slide-title compact">L'écosystème que le rôle pilote</h1>
-
-        <p class="intro-line">
-          Le Marketing Operations administre un ensemble d'outils connectés. La difficulté n'est pas leur
-          nombre, c'est de les faire fonctionner ensemble, comme un seul système.
-        </p>
-
-        <div class="grid-3">
-          <div class="card">
-            <div class="card-label">CRM</div>
-            <p>Le référentiel client, au centre du dispositif.</p>
-          </div>
-          <div class="card">
-            <div class="card-label">Automation marketing</div>
-            <p>Pardot, HubSpot ou Marketo. Campagnes, nurturing, scoring.</p>
-          </div>
-          <div class="card">
-            <div class="card-label">Analytics web</div>
-            <p>Mesure de l'audience et du parcours sur les sites.</p>
-          </div>
-          <div class="card">
-            <div class="card-label">Enrichissement</div>
-            <p>Services de qualification et d'enrichissement de la donnée.</p>
-          </div>
-          <div class="card">
-            <div class="card-label">Intégration</div>
-            <p>Les plateformes qui relient les outils entre eux.</p>
-          </div>
-          <div class="card">
-            <div class="card-label">ABM &amp; analytics avancé</div>
-            <p>Ciblage des comptes clés, modèles d'analyse spécialisés.</p>
-          </div>
+    <!-- ========== 3 · LE STACK ========== -->
+    <section class="slide" data-chapter="stack">
+      <div class="slide-inner">
+        <div class="slide-head">
+          <div class="slide-eyebrow">Le stack</div>
+          <h1 class="slide-title">L'écosystème que le rôle pilote</h1>
         </div>
 
-        <div class="insight-card">
-          <h4>D'une équipe à un groupe</h4>
-          <p>La différence entre une petite structure et un grand groupe n'est pas le nombre d'outils. C'est la
-          complexité et le besoin d'intégration. Plus l'organisation est grande, plus le système doit être tenu
-          à un seul endroit.</p>
+        <div class="split">
+          <div class="stack-list">
+            <div class="stack-row"><div class="ic"><i data-lucide="users-round"></i></div><div><b>CRM</b><span>Le référentiel client, au centre du dispositif.</span></div></div>
+            <div class="stack-row"><div class="ic"><i data-lucide="repeat"></i></div><div><b>Automation marketing</b><span>Pardot, HubSpot ou Marketo. Campagnes, nurturing, scoring.</span></div></div>
+            <div class="stack-row"><div class="ic"><i data-lucide="line-chart"></i></div><div><b>Analytics web</b><span>Mesure de l'audience et du parcours.</span></div></div>
+            <div class="stack-row"><div class="ic"><i data-lucide="sparkles"></i></div><div><b>Enrichissement</b><span>Qualification et enrichissement de la donnée.</span></div></div>
+            <div class="stack-row"><div class="ic"><i data-lucide="cable"></i></div><div><b>Intégration</b><span>Les plateformes qui relient les outils entre eux.</span></div></div>
+            <div class="stack-row"><div class="ic"><i data-lucide="target"></i></div><div><b>ABM et analytics avancé</b><span>Ciblage des comptes clés, analyses spécialisées.</span></div></div>
+          </div>
+
+          <div class="hero-panel">
+            <div class="hero-num">120</div>
+            <div class="hero-cap">outils marketing en moyenne dans un grand groupe</div>
+            <p>La difficulté n'est pas leur nombre, c'est de les faire fonctionner ensemble. D'une petite
+            structure à un grand groupe, ce qui change n'est pas le nombre d'outils, c'est la complexité et le
+            besoin d'intégration. Plus l'organisation est grande, plus le système doit être tenu à un seul endroit.</p>
+          </div>
         </div>
       </div>
-      <div class="company-logo"><img src="https://raw.githubusercontent.com/ayming-france/assets/main/logos/ayming-logo.png" alt="Ayming"></div>
     </section>
 
-    <!-- ========== SLIDE 4 : LE ROLE DANS L'EQUIPE ========== -->
+    <!-- ========== 4 · LE ROLE DANS L'EQUIPE ========== -->
     <section class="slide" data-chapter="voisins">
-      <div class="slide-inner insights">
-        <div class="slide-eyebrow">Le rôle dans l'équipe</div>
-        <h1 class="slide-title compact">Ce que le Marketing Operations n'est pas</h1>
+      <div class="slide-inner">
+        <div class="slide-head">
+          <div class="slide-eyebrow">Le rôle dans l'équipe</div>
+          <h1 class="slide-title">Ce que le Marketing Operations n'est pas</h1>
+          <p class="slide-lead">Le rôle se comprend par contraste avec ses voisins. Chacun a son métier, le Marketing Operations tient ce qui les rend possibles.</p>
+        </div>
 
-        <p class="intro-line">
-          Le rôle se comprend par contraste avec ses voisins. Chacun a son métier ; le Marketing Operations
-          tient ce qui les rend possibles.
-        </p>
-
-        <table class="data-table">
+        <table class="comparison-table" style="max-width:1120px;margin:26px auto 0;">
           <thead>
             <tr><th>Rôle voisin</th><th>Ce qu'il fait</th><th>Ce que fait le Marketing Operations</th></tr>
           </thead>
           <tbody>
             <tr>
-              <td class="role">Demand Generation</td>
+              <td><strong>Demand Generation</strong><span class="who">Victoria</span></td>
               <td>Décide quelles campagnes lancer, détient la stratégie et le choix des audiences.</td>
-              <td class="marops">Construit le « comment » : l'infrastructure qui les exécute efficacement.</td>
+              <td>Construit le « comment », l'infrastructure qui les exécute efficacement.</td>
             </tr>
             <tr>
-              <td class="role">Campaign Operations</td>
+              <td><strong>Campaign Operations</strong><span class="who">Delphine</span></td>
               <td>Exécute les campagnes au quotidien.</td>
-              <td class="marops">Fournit les templates, l'automation et le système sous l'exécution.</td>
+              <td>Fournit les templates, l'automation et le système sous l'exécution.</td>
             </tr>
             <tr>
-              <td class="role">Analytics &amp; enrichissement</td>
+              <td><strong>Analytics et enrichissement</strong><span class="who">Sébastien et Martin</span></td>
               <td>Produit l'insight, enrichit et cible la donnée.</td>
-              <td class="marops">Tient le modèle et la gouvernance de donnée qui rendent l'analyse et le ciblage possibles.</td>
+              <td>Tient le modèle et la gouvernance de donnée qui rendent l'analyse possible.</td>
             </tr>
           </tbody>
         </table>
 
-        <p class="footnote">Dans une équipe réduite, ces rôles se recouvrent souvent. Le Marketing Operations est ce qui les relie.</p>
+        <div class="team-gap">
+          <i data-lucide="plus-circle"></i>
+          <span>Trois rôles voisins, déjà tenus dans l'équipe. Le <b>Marketing Operations</b> reste à créer.</span>
+        </div>
       </div>
-      <div class="company-logo"><img src="https://raw.githubusercontent.com/ayming-france/assets/main/logos/ayming-logo.png" alt="Ayming"></div>
     </section>
 
-    <!-- ========== SLIDE 5 : LA VALEUR ========== -->
-    <section class="slide compact-fit" data-chapter="valeur">
-      <div class="slide-inner insights">
-        <div class="slide-eyebrow">Valeur</div>
-        <h1 class="slide-title compact">Ce que le rôle change</h1>
+    <!-- ========== 5 · LA VALEUR ========== -->
+    <section class="slide" data-chapter="valeur">
+      <div class="slide-inner">
+        <div class="slide-head">
+          <div class="slide-eyebrow">Valeur</div>
+          <h1 class="slide-title">Ce que le rôle change</h1>
+          <p class="slide-lead">Des ordres de grandeur cités par la littérature spécialisée, à titre indicatif.</p>
+        </div>
 
-        <div class="grid-4">
-          <div class="card">
-            <div class="card-label">ROI</div>
-            <p>Un coût par lead qui baisse, un taux de conversion qui monte.</p>
+        <div class="stats-row-4" style="margin-top:30px;">
+          <div class="stat-card">
+            <div class="stat-number">-20 à 40 %</div>
+            <div class="stat-label">de coût par lead</div>
           </div>
-          <div class="card">
-            <div class="card-label">Alignement ventes-marketing</div>
-            <p>Visibilité partagée, processus convenus, définitions de lead communes.</p>
+          <div class="stat-card">
+            <div class="stat-number">+15 à 25 %</div>
+            <div class="stat-label">de taux de conversion</div>
           </div>
-          <div class="card">
-            <div class="card-label">Passage à l'échelle</div>
-            <p>L'automation libère les équipes pour le travail à forte valeur.</p>
+          <div class="stat-card">
+            <div class="stat-number">+30 %</div>
+            <div class="stat-label">de capacité d'équipe</div>
           </div>
-          <div class="card">
-            <div class="card-label">Décision par la donnée</div>
-            <p>Un reporting fiable, une donnée de confiance pour arbitrer.</p>
+          <div class="stat-card">
+            <div class="stat-number">3 à 6 mois</div>
+            <div class="stat-label">pour un ROI mesurable</div>
           </div>
         </div>
 
-        <div class="insight-card success">
-          <h4>Des ordres de grandeur, à titre indicatif</h4>
-          <p>La littérature spécialisée cite un coût par lead en baisse de 20 à 40 %, une conversion en hausse
-          de 15 à 25 %, et la capacité d'une équipe augmentée de 30 % ou plus par un seul spécialiste.</p>
-        </div>
-      </div>
-      <div class="company-logo"><img src="https://raw.githubusercontent.com/ayming-france/assets/main/logos/ayming-logo.png" alt="Ayming"></div>
-    </section>
-
-    <!-- ========== SLIDE 6 : QUAND INVESTIR ========== -->
-    <section class="slide compact-fit" data-chapter="quand">
-      <div class="slide-inner insights">
-        <div class="slide-eyebrow">Le déclic</div>
-        <h1 class="slide-title compact">Quand le rôle devient nécessaire</h1>
-
-        <p class="intro-line">
-          Le besoin devient net au-delà d'une équipe de cinq à dix personnes, ou dès que plusieurs de ces
-          signaux apparaissent.
-        </p>
-
-        <div class="grid-3">
-          <div class="card">
-            <div class="card-label">Plateformes sous-exploitées</div>
-            <p>Des outils payés mais à peine utilisés.</p>
+        <div class="icon-grid cols-4" style="margin-top:30px;">
+          <div class="feature-item">
+            <div class="feature-icon"><i data-lucide="trending-up"></i></div>
+            <div class="ft"><h4>ROI</h4><p>Un coût par lead qui baisse, une conversion qui monte.</p></div>
           </div>
-          <div class="card">
-            <div class="card-label">Tâches manuelles</div>
-            <p>Le travail répétitif s'accumule et absorbe les équipes.</p>
+          <div class="feature-item">
+            <div class="feature-icon"><i data-lucide="handshake"></i></div>
+            <div class="ft"><h4>Alignement</h4><p>Visibilité partagée, définitions de lead communes.</p></div>
           </div>
-          <div class="card">
-            <div class="card-label">Reporting imprécis</div>
-            <p>Des chiffres sur lesquels personne n'ose décider.</p>
+          <div class="feature-item">
+            <div class="feature-icon"><i data-lucide="expand"></i></div>
+            <div class="ft"><h4>Passage à l'échelle</h4><p>L'automation libère les équipes pour le travail à forte valeur.</p></div>
           </div>
-          <div class="card">
-            <div class="card-label">Désalignement</div>
-            <p>Ventes et marketing ne parlent pas des mêmes leads.</p>
-          </div>
-          <div class="card">
-            <div class="card-label">Stack déconnecté</div>
-            <p>Des outils qui ne se parlent pas, une donnée éparpillée.</p>
-          </div>
-          <div class="card">
-            <div class="card-label">Équipe qui grandit</div>
-            <p>Au-delà de cinq à dix personnes, le besoin d'un système devient structurel.</p>
+          <div class="feature-item">
+            <div class="feature-icon"><i data-lucide="database"></i></div>
+            <div class="ft"><h4>Décision par la donnée</h4><p>Un reporting fiable, une donnée de confiance pour arbitrer.</p></div>
           </div>
         </div>
       </div>
-      <div class="company-logo"><img src="https://raw.githubusercontent.com/ayming-france/assets/main/logos/ayming-logo.png" alt="Ayming"></div>
     </section>
 
-    <!-- ========== SLIDE 7 : COMMENT LE CONSTRUIRE ========== -->
-    <section class="slide compact-fit" data-chapter="construire">
-      <div class="slide-inner insights">
-        <div class="slide-eyebrow">Comment le construire</div>
-        <h1 class="slide-title compact">Par la méthode, pas par les outils</h1>
+    <!-- ========== 6 · QUAND INVESTIR ========== -->
+    <section class="slide" data-chapter="quand">
+      <div class="slide-inner">
+        <div class="slide-head">
+          <div class="slide-eyebrow">Le déclic</div>
+          <h1 class="slide-title">Quand le rôle devient nécessaire</h1>
+          <p class="slide-lead">Le besoin devient net au-delà d'une équipe de cinq à dix personnes, ou dès que ces signaux apparaissent.</p>
+        </div>
 
-        <p class="intro-line">
-          On ne règle pas le désordre en achetant un outil de plus. On commence par la stratégie et le
-          processus, la technologie vient ensuite.
-        </p>
+        <div class="checklist">
+          <div class="check-item"><span class="ic"><i data-lucide="gauge"></i></span><div><b>Plateformes sous-exploitées</b><p>Des outils payés mais à peine utilisés.</p></div></div>
+          <div class="check-item"><span class="ic"><i data-lucide="repeat"></i></span><div><b>Tâches manuelles</b><p>Le travail répétitif s'accumule et absorbe les équipes.</p></div></div>
+          <div class="check-item"><span class="ic"><i data-lucide="bar-chart-3"></i></span><div><b>Reporting imprécis</b><p>Des chiffres sur lesquels personne n'ose décider.</p></div></div>
+          <div class="check-item"><span class="ic"><i data-lucide="split"></i></span><div><b>Désalignement</b><p>Ventes et marketing ne parlent pas des mêmes leads.</p></div></div>
+          <div class="check-item"><span class="ic"><i data-lucide="unlink"></i></span><div><b>Stack déconnecté</b><p>Des outils qui ne se parlent pas, une donnée éparpillée.</p></div></div>
+          <div class="check-item"><span class="ic"><i data-lucide="help-circle"></i></span><div><b>Contribution floue</b><p>La part du marketing dans le pipeline reste difficile à prouver.</p></div></div>
+        </div>
 
-        <div class="grid-3">
-          <div class="card">
-            <div class="num">1</div>
-            <div class="card-label">Diagnostic</div>
-            <p>Cartographier le stack, les processus et les problèmes de donnée. Écouter marketing et ventes.</p>
+        <div class="threshold">Trois signaux ou plus, et la priorité devient immédiate.</div>
+      </div>
+    </section>
+
+    <!-- ========== 7 · COMMENT LE CONSTRUIRE ========== -->
+    <section class="slide" data-chapter="construire">
+      <div class="slide-inner">
+        <div class="slide-head">
+          <div class="slide-eyebrow">Comment le construire</div>
+          <h1 class="slide-title">Par la méthode, pas par les outils</h1>
+          <p class="slide-lead">On ne règle pas le désordre en achetant un outil de plus. On commence par la stratégie et le processus, la technologie vient ensuite.</p>
+        </div>
+
+        <div class="step-grid">
+          <div class="step-item"><div class="step-circle">1</div><h4>Diagnostic</h4><p>Cartographier le stack, les processus et les problèmes de donnée. Écouter marketing et ventes.</p></div>
+          <div class="step-item"><div class="step-circle">2</div><h4>Priorités</h4><p>Viser d'abord ce qui produit un résultat rapide et lève le plus de friction.</p></div>
+          <div class="step-item"><div class="step-circle">3</div><h4>Adhésion</h4><p>Construire le cas et lever les objections, côté marketing, ventes et IT.</p></div>
+          <div class="step-item"><div class="step-circle">4</div><h4>Fondations</h4><p>Commencer par le nettoyage de la donnée, les intégrations clés, l'automation de base.</p></div>
+          <div class="step-item"><div class="step-circle">5</div><h4>Boucle d'amélioration</h4><p>Un rythme de revue régulier, des retours qui affinent le système en continu.</p></div>
+          <div class="step-item"><div class="step-circle">6</div><h4>Mesure et preuve</h4><p>Suivre l'impact, partager les gains pour garder le soutien dans la durée.</p></div>
+        </div>
+
+        <p class="step-note">L'erreur classique, c'est de commencer par l'outil. On automatise alors un mauvais processus.</p>
+      </div>
+    </section>
+
+    <!-- ========== 8 · OU LE ROLE SE PLACE ========== -->
+    <section class="slide" data-chapter="placement">
+      <div class="slide-inner">
+        <div class="slide-head">
+          <div class="slide-eyebrow">Où le rôle se place</div>
+          <h1 class="slide-title">De la France vers une approche groupe</h1>
+          <p class="slide-lead">Le Marketing Operations reste rattaché au marketing. Sa mission de système, elle, a vocation à être partagée entre les pays.</p>
+        </div>
+
+        <div class="traj">
+          <div class="traj-node now">
+            <div class="tlabel">Aujourd'hui</div>
+            <h4>France</h4>
+            <p>Le rôle démarre là où le travail a déjà commencé.</p>
           </div>
-          <div class="card">
-            <div class="num">2</div>
-            <div class="card-label">Priorités</div>
-            <p>Viser d'abord ce qui produit un résultat rapide, touche le plus de monde, lève le plus de friction.</p>
-          </div>
-          <div class="card">
-            <div class="num">3</div>
-            <div class="card-label">Adhésion</div>
-            <p>Construire le cas et lever les objections, côté marketing, ventes et IT.</p>
-          </div>
-          <div class="card">
-            <div class="num">4</div>
-            <div class="card-label">Fondations</div>
-            <p>Commencer par le nettoyage de la donnée, les intégrations clés, l'automation de base.</p>
-          </div>
-          <div class="card">
-            <div class="num">5</div>
-            <div class="card-label">Boucle d'amélioration</div>
-            <p>Un rythme de revue régulier, des retours qui affinent le système en continu.</p>
-          </div>
-          <div class="card">
-            <div class="num">6</div>
-            <div class="card-label">Mesure &amp; preuve</div>
-            <p>Suivre l'impact, partager les gains pour garder le soutien dans la durée.</p>
+          <div class="traj-arrow"><i data-lucide="arrow-right"></i></div>
+          <div class="traj-node target">
+            <div class="tlabel">La cible</div>
+            <h4>Groupe</h4>
+            <p>Un système partagé, parce que le stack et la donnée le sont déjà.</p>
           </div>
         </div>
 
-        <p class="footnote">L'erreur classique, c'est de commencer par l'outil. On automatise alors un mauvais processus.</p>
+        <div class="layer-row">
+          <div class="layer group">
+            <div class="lh"><i data-lucide="building-2"></i>Centralisé au groupe</div>
+            <p>Le modèle de données, le standard de mesure, le processus et la gouvernance du stack. Le socle commun.</p>
+          </div>
+          <div class="layer local">
+            <div class="lh"><i data-lucide="map-pin"></i>Local par pays</div>
+            <p>L'exécution des campagnes et le terrain. Ce qui doit rester au plus près du marché.</p>
+          </div>
+        </div>
       </div>
-      <div class="company-logo"><img src="https://raw.githubusercontent.com/ayming-france/assets/main/logos/ayming-logo.png" alt="Ayming"></div>
     </section>
 
-    <!-- ========== SLIDE 8 : CE QUE JE PROPOSE ========== -->
+    <!-- ========== 9 · LE MARKETING DE DEMAIN ========== -->
+    <section class="slide" data-chapter="demain">
+      <div class="slide-inner">
+        <div class="slide-head">
+          <div class="slide-eyebrow">La position de demain</div>
+          <h1 class="slide-title">Le rôle que l'IA rend central</h1>
+          <p class="slide-lead">Les agents IA ne remplacent pas ce rôle, ils le décuplent. La donnée propre, le système intégré et la mesure fiable sont ce sur quoi l'IA s'appuie. Sans eux, elle amplifie le désordre.</p>
+        </div>
+
+        <div class="icon-grid cols-3">
+          <div class="feature-item">
+            <div class="feature-icon"><i data-lucide="database"></i></div>
+            <div class="ft"><h4>La donnée, son carburant</h4><p>Un agent ne vaut que la donnée qu'on lui confie. Le Marketing Operations tient cette donnée.</p></div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon"><i data-lucide="cpu"></i></div>
+            <div class="ft"><h4>Un opérateur, des leviers</h4><p>Le rôle passe de « je maintiens » à « je pilote un système qui s'exécute ». Une personne couvre ce qui demandait une équipe.</p></div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon"><i data-lucide="gauge"></i></div>
+            <div class="ft"><h4>La mesure, plus rare</h4><p>Quand chacun produit du contenu à l'IA, savoir ce qui marche vraiment devient l'avantage.</p></div>
+          </div>
+        </div>
+
+        <div class="proof-strip">
+          <i data-lucide="sparkles"></i>
+          <span><b>Le marketing de demain, je le pratique déjà.</b> Le stack d'attribution et d'analytics, je le tiens et je l'opère avec des agents IA. Une seule personne, un système complet.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 10 · CE QUE JE PROPOSE ========== -->
     <section class="slide" data-chapter="propose">
-      <div class="slide-inner insights">
-        <div class="slide-eyebrow">Ce que je propose</div>
-        <h1 class="slide-title compact">Le rôle, au niveau groupe</h1>
+      <div class="slide-inner">
+        <div class="slide-head">
+          <div class="slide-eyebrow">Ce que je propose</div>
+          <h1 class="slide-title">Créer le rôle, et le placer juste</h1>
+          <p class="slide-lead">La méthode existe, le terrain est là. Le rôle reste à nommer, avant que le désordre des outils et de la donnée n'entame la performance.</p>
+        </div>
 
-        <p class="intro-line">Trois points à valider ensemble.</p>
-
-        <div class="grid-3">
-          <div class="card highlight">
-            <span class="card-badge">Le rôle</span>
-            <div class="num">1</div>
-            <div class="card-label">Créer le Marketing Operations</div>
-            <p>Un rôle qui n'existe pas encore, et dont plusieurs signaux montrent qu'il est déjà nécessaire.</p>
+        <div class="propose-grid">
+          <div class="propose-card">
+            <div class="propose-num">1</div>
+            <h4>Le rôle</h4>
+            <p>Créer le Marketing Operations, centré sur le socle mesure, donnée et attribution. Un périmètre net, pas tout le marketing.</p>
           </div>
-          <div class="card highlight">
-            <span class="card-badge">Le niveau</span>
-            <div class="num">2</div>
-            <div class="card-label">Au niveau groupe</div>
-            <p>Le stack, la donnée et la mesure sont partagés entre les pays. Le rôle qui les détient l'est aussi.</p>
+          <div class="propose-card lead-card">
+            <div class="propose-num">2</div>
+            <h4>Le niveau</h4>
+            <p>Le stack, la donnée et la mesure sont partagés entre les pays. Le rôle qui les tient a sa place au niveau groupe.</p>
           </div>
-          <div class="card highlight">
-            <span class="card-badge">Le départ</span>
-            <div class="num">3</div>
-            <div class="card-label">Par où je commence</div>
+          <div class="propose-card">
+            <div class="propose-num">3</div>
+            <h4>Par où je commence</h4>
             <p>Je suis en France, et mon travail y mène déjà. L'alignement du site au niveau groupe et le projet One Salesforce ont donné le projet performance marketing.</p>
           </div>
         </div>
 
-        <div class="insight-card success">
-          <h4>Le bon moment, c'est maintenant</h4>
-          <p>Avant que le désordre des outils et de la donnée n'entame la performance. La méthode existe, le
-          terrain est là. Le rôle reste à nommer.</p>
+        <div class="creds">
+          <span class="cred"><i data-lucide="link"></i>Chaîne d'attribution du site au CRM</span>
+          <span class="cred"><i data-lucide="database"></i>Entrepôt analytique GA4, Search Console, Bing</span>
+          <span class="cred"><i data-lucide="bar-chart-3"></i>Migration Databricks et Power BI</span>
         </div>
       </div>
-      <div class="company-logo"><img src="https://raw.githubusercontent.com/ayming-france/assets/main/logos/ayming-logo.png" alt="Ayming"></div>
     </section>
 
   </main>
 
-  <div class="keyboard-hint">
-    <span><span class="key" id="key-prev">&larr;</span><span class="key" id="key-next">&rarr;</span> Naviguer</span>
-    <span><span class="key" id="key-fullscreen">F</span> Plein écran</span>
-  </div>
-
-  <div class="deck-credit">José J Encarnación Saiter | Marketing France · 21 juillet 2026</div>
-
+  <script src="https://ayming-france.github.io/assets/engine/lucide.min.js"></script>
   <script src="https://ayming-france.github.io/assets/engine/slides.js"></script>
   <script>
     (function () {
-      var cover = document.querySelector('.slide.cover');
-      var credit = document.querySelector('.deck-credit');
-      if (!cover || !credit) return;
-      var sync = function () {
-        credit.style.visibility = cover.classList.contains('active') ? 'hidden' : 'visible';
-      };
-      sync();
-      new MutationObserver(sync).observe(cover, { attributes: true, attributeFilter: ['class'] });
+      var draw = function () { if (window.lucide && lucide.createIcons) lucide.createIcons(); };
+      if (document.readyState !== 'loading') draw();
+      else document.addEventListener('DOMContentLoaded', draw);
     })();
   </script>
 
