@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plateforme marketing, corrections et architecture</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://ayming-france.github.io/assets/engine/slides.css">
+  <style>
+    .deck-help { display: none !important; }
+    .slide-head { text-align: center; margin-bottom: 8px; }
+    .slide-eyebrow { text-transform: uppercase; letter-spacing: 2px; font-size: 12px; font-weight: 700; color: var(--blue-primary); margin-bottom: 10px; }
+    .slide-title { color: var(--blue-dark); }
+    .slide-lead { font-size: 16px; line-height: 1.6; color: var(--text-gray); max-width: 920px; margin: 14px auto 0; text-align: center; }
+    .slide-src { margin: 20px auto 0; text-align: center; font-size: 12px; color: var(--text-light); font-style: italic; }
+
+    /* Corrections grid */
+    .corr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; width: 100%; max-width: 1080px; margin: 28px auto 0; }
+    .corr-card { background: var(--bg-white); border: 1px solid var(--bg-subtle); border-radius: 16px; padding: 20px 22px; box-shadow: var(--shadow-md); text-align: left; }
+    .corr-card h4 { font-size: 16px; font-weight: 700; color: var(--blue-dark); margin: 0 0 12px; }
+    .corr-row { display: flex; align-items: flex-start; gap: 10px; }
+    .corr-row + .corr-row { margin-top: 8px; }
+    .corr-row .ic { flex-shrink: 0; margin-top: 1px; }
+    .corr-row .ic svg { width: 18px; height: 18px; }
+    .corr-row.wrong .ic { color: var(--text-light); }
+    .corr-row.right .ic { color: var(--blue-primary); }
+    .corr-row p { margin: 0; font-size: 13px; line-height: 1.45; }
+    .corr-row.wrong p { color: var(--text-gray); }
+    .corr-row.right p { color: var(--text-dark); }
+    .corr-row .lbl { font-weight: 700; color: var(--blue-dark); }
+
+    /* Architecture compare */
+    .compare-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; width: 100%; max-width: 1120px; margin: 26px auto 0; }
+    .compare-card { background: var(--bg-white); border: 1px solid var(--bg-subtle); border-radius: 18px; padding: 22px 22px; box-shadow: var(--shadow-md); text-align: left; }
+    .compare-card.win { border: 2px solid var(--blue-primary); background: linear-gradient(135deg, #f8fafc 0%, #eaf6fc 100%); }
+    .compare-card.lose { background: var(--bg-light); }
+    .compare-tag { display: inline-block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.6px; font-weight: 700; padding: 3px 10px; border-radius: 9999px; background: var(--bg-subtle); color: var(--text-gray); }
+    .compare-card.win .compare-tag { background: var(--gradient-brand-horizontal); color: #fff; }
+    .compare-card h3 { font-size: 21px; font-weight: 700; color: var(--blue-dark); margin: 12px 0 12px; }
+    .arch-chip { display: inline-flex; align-items: center; gap: 8px; font-size: 12.5px; font-weight: 600; color: var(--blue-dark); background: var(--overlay-blue-soft); border-radius: 10px; padding: 8px 12px; }
+    .arch-chip svg { width: 17px; height: 17px; color: var(--blue-primary); }
+    .compare-card > p { font-size: 13px; color: var(--text-gray); line-height: 1.5; margin: 12px 0 0; text-align: left; }
+    .lim-list { list-style: none; padding: 0; margin: 12px 0 0; }
+    .lim-list li { font-size: 12px; color: var(--text-gray); line-height: 1.4; padding: 4px 0 4px 16px; position: relative; text-align: left; }
+    .lim-list li::before { content: ""; position: absolute; left: 0; top: 9px; width: 5px; height: 5px; border-radius: 50%; background: var(--text-light); }
+    .verdict { margin: 26px auto 0; max-width: 1120px; background: var(--gradient-brand-horizontal); color: #fff; border-radius: 16px; padding: 16px 28px; font-size: 15.5px; font-weight: 600; text-align: center; box-shadow: var(--shadow-md); }
+  </style>
+</head>
+<body>
+
+  <main class="presentation">
+
+    <!-- ========== 1 · LES CORRECTIONS ========== -->
+    <section class="slide active" data-chapter="corrections">
+      <div class="slide-inner">
+        <div class="slide-head">
+          <div class="slide-eyebrow">Le slide présenté</div>
+          <h1 class="slide-title">Quatre points à corriger</h1>
+          <p class="slide-lead">Le tableau marque Salesforce et Pardot en rouge sur des capacités qu'ils ont bel et bien.</p>
+        </div>
+
+        <div class="corr-grid">
+          <div class="corr-card">
+            <h4>Attribution multi-touch</h4>
+            <div class="corr-row wrong"><span class="ic"><i data-lucide="x"></i></span><p>Marquée absente pour Pardot.</p></div>
+            <div class="corr-row right"><span class="ic"><i data-lucide="check"></i></span><p><span class="lbl">En réalité.</span> Pardot la fait via Campaign Influence (first, last, even), et les modèles avancés via B2B Marketing Analytics.</p></div>
+          </div>
+          <div class="corr-card">
+            <h4>Agent IA, chatbot SDR</h4>
+            <div class="corr-row wrong"><span class="ic"><i data-lucide="x"></i></span><p>Marqué absent pour Salesforce et MCN.</p></div>
+            <div class="corr-row right"><span class="ic"><i data-lucide="check"></i></span><p><span class="lbl">En réalité.</span> Agentforce SDR existe et est disponible depuis octobre 2024.</p></div>
+          </div>
+          <div class="corr-card">
+            <h4>Formation et tutoriels vidéo</h4>
+            <div class="corr-row wrong"><span class="ic"><i data-lucide="x"></i></span><p>Marqués absents pour Pardot et MCN.</p></div>
+            <div class="corr-row right"><span class="ic"><i data-lucide="check"></i></span><p><span class="lbl">En réalité.</span> Salesforce Trailhead est la référence du marché, et Pardot en bénéficie.</p></div>
+          </div>
+          <div class="corr-card">
+            <h4>IA de création de campagnes</h4>
+            <div class="corr-row wrong"><span class="ic"><i data-lucide="x"></i></span><p>MCN noté « basique ».</p></div>
+            <div class="corr-row right"><span class="ic"><i data-lucide="check"></i></span><p><span class="lbl">En réalité.</span> MCN est natif Agentforce, c'est l'un de ses arguments majeurs, pas une brique basique.</p></div>
+          </div>
+        </div>
+
+        <p class="slide-src">Sources : Salesforce (Agentforce SDR), Salesforce Ben et marcloud (attribution Pardot), Trailhead.</p>
+      </div>
+    </section>
+
+    <!-- ========== 2 · L'ARCHITECTURE ========== -->
+    <section class="slide" data-chapter="architecture">
+      <div class="slide-inner">
+        <div class="slide-head">
+          <div class="slide-eyebrow">Le critère décisif</div>
+          <h1 class="slide-title">L'architecture, là où HubSpot perd</h1>
+          <p class="slide-lead">Le vrai enjeu, absent du slide, c'est le partage de la donnée avec Salesforce.</p>
+        </div>
+
+        <div class="compare-grid">
+          <div class="compare-card">
+            <span class="compare-tag">Aujourd'hui</span>
+            <h3>Pardot</h3>
+            <span class="arch-chip"><i data-lucide="unlink"></i>Base séparée, connecteur natif</span>
+            <p>La donnée remonte dans Salesforce, mais par une synchronisation. C'est la seule vraie limite, et c'est elle que MCN corrige.</p>
+          </div>
+          <div class="compare-card win">
+            <span class="compare-tag">La vraie évolution</span>
+            <h3>Salesforce MCN</h3>
+            <span class="arch-chip"><i data-lucide="check-circle"></i>Une seule base, native</span>
+            <p>Natif du coeur Salesforce (Data Cloud), sans connecteur ni synchronisation. Une seule source de vérité pour le marketing et les ventes.</p>
+          </div>
+          <div class="compare-card lose">
+            <span class="compare-tag">Le point faible</span>
+            <h3>HubSpot</h3>
+            <span class="arch-chip"><i data-lucide="unlink"></i>Base séparée, connecteur externe</span>
+            <ul class="lim-list">
+              <li>Erreurs de synchro silencieuses, sans résolution de conflit.</li>
+              <li>Plafonds de mapping, objets personnalisés limités.</li>
+              <li>Une seule connexion Salesforce par compte.</li>
+              <li>Deux systèmes qui se disputent la référence.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="verdict">MCN supprime le connecteur. HubSpot en ajoute un, avec ses limites documentées. La décision se joue là, pas sur les fonctionnalités.</div>
+
+        <p class="slide-src">Limites du connecteur HubSpot vers Salesforce. Stacksync, MarCloud, Campaign Creators, 2025-2026.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="https://ayming-france.github.io/assets/engine/lucide.min.js"></script>
+  <script src="https://ayming-france.github.io/assets/engine/slides.js"></script>
+  <script>
+    (function () {
+      var draw = function () { if (window.lucide && lucide.createIcons) lucide.createIcons(); };
+      if (document.readyState !== 'loading') draw();
+      else document.addEventListener('DOMContentLoaded', draw);
+    })();
+  </script>
+
+</body>
+</html>

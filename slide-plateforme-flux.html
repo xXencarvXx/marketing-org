@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plateforme marketing, le flux avec Salesforce</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://ayming-france.github.io/assets/engine/slides.css">
+  <style>
+    .deck-help { display: none !important; }
+    .slide-head { text-align: center; margin-bottom: 8px; }
+    .slide-eyebrow { text-transform: uppercase; letter-spacing: 2px; font-size: 12px; font-weight: 700; color: var(--blue-primary); margin-bottom: 10px; }
+    .slide-title { color: var(--blue-dark); }
+    .slide-lead { font-size: 17px; line-height: 1.6; color: var(--text-gray); max-width: 920px; margin: 14px auto 0; text-align: center; }
+    .slide-src { margin: 20px auto 0; text-align: center; font-size: 12px; color: var(--text-light); font-style: italic; }
+
+    .compare-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; width: 100%; max-width: 1140px; margin: 30px auto 0; }
+    .compare-card { background: var(--bg-white); border: 1px solid var(--bg-subtle); border-radius: 18px; padding: 24px 24px; box-shadow: var(--shadow-md); text-align: left; }
+    .compare-card.win { border: 2px solid var(--blue-primary); background: linear-gradient(135deg, #f8fafc 0%, #eaf6fc 100%); }
+    .compare-tag { display: inline-block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.6px; font-weight: 700; padding: 3px 10px; border-radius: 9999px; background: var(--bg-subtle); color: var(--text-gray); }
+    .compare-card.win .compare-tag { background: var(--gradient-brand-horizontal); color: #fff; }
+    .compare-card h3 { font-size: 22px; font-weight: 700; color: var(--blue-dark); margin: 12px 0 12px; }
+    .arch-chip { display: inline-flex; align-items: center; gap: 8px; font-size: 12.5px; font-weight: 600; color: var(--blue-dark); background: var(--overlay-blue-soft); border-radius: 10px; padding: 8px 12px; }
+    .arch-chip svg { width: 17px; height: 17px; color: var(--blue-primary); }
+    .compare-card p { font-size: 13.5px; color: var(--text-gray); line-height: 1.5; margin: 14px 0 0; text-align: left; }
+    .compare-card p b { color: var(--blue-dark); }
+
+    .verdict { margin: 28px auto 0; max-width: 1140px; background: var(--gradient-brand-horizontal); color: #fff; border-radius: 16px; padding: 18px 28px; font-size: 16px; font-weight: 600; text-align: center; box-shadow: var(--shadow-md); }
+  </style>
+</head>
+<body>
+
+  <main class="presentation">
+    <section class="slide active" data-chapter="flux">
+      <div class="slide-inner">
+        <div class="slide-head">
+          <div class="slide-eyebrow">Le choix de plateforme</div>
+          <h1 class="slide-title">La question n'est pas les fonctionnalités, c'est le flux avec Salesforce</h1>
+          <p class="slide-lead">Notre problème avec Pardot est architectural, pas fonctionnel. Voici les trois options sur ce seul critère, le partage de la donnée avec Salesforce.</p>
+        </div>
+
+        <div class="compare-grid">
+          <div class="compare-card">
+            <span class="compare-tag">Aujourd'hui</span>
+            <h3>Pardot</h3>
+            <span class="arch-chip"><i data-lucide="unlink"></i>Deux bases, une synchro</span>
+            <p>Base séparée de Salesforce, reliée par un connecteur. <b>Notre friction actuelle : latence, doublons, attribution difficile.</b></p>
+          </div>
+          <div class="compare-card win">
+            <span class="compare-tag">La vraie évolution</span>
+            <h3>Salesforce MCN</h3>
+            <span class="arch-chip"><i data-lucide="check-circle"></i>Une seule base, native</span>
+            <p>Natif du coeur Salesforce (Data Cloud), sans synchronisation. <b>Résout le flux entre marketing et ventes.</b></p>
+          </div>
+          <div class="compare-card">
+            <span class="compare-tag">Pas une révolution</span>
+            <h3>HubSpot</h3>
+            <span class="arch-chip"><i data-lucide="unlink"></i>Deux bases, une synchro externe</span>
+            <p>Plateforme séparée, avec sa propre base. <b>Recrée le silo avec Salesforce, et l'amplifie.</b></p>
+          </div>
+        </div>
+
+        <div class="verdict">La décision se joue sur l'architecture et le flux avec Salesforce, pas sur la grille de fonctionnalités.</div>
+
+        <p class="slide-src">Architecture des plateformes, 2025-2026. Salesforce Ben, Bloomreach, Arkus, Stacksync.</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://ayming-france.github.io/assets/engine/lucide.min.js"></script>
+  <script src="https://ayming-france.github.io/assets/engine/slides.js"></script>
+  <script>
+    (function () {
+      var draw = function () { if (window.lucide && lucide.createIcons) lucide.createIcons(); };
+      if (document.readyState !== 'loading') draw();
+      else document.addEventListener('DOMContentLoaded', draw);
+    })();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comparaison des plateformes, version corrigée</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://ayming-france.github.io/assets/engine/slides.css">
+  <style>
+    .deck-help { display: none !important; }
+    .ctable { width: 100%; max-width: 1280px; margin: 0 auto; border-collapse: collapse; font-size: 14px; background: var(--bg-white); border-radius: 14px; overflow: hidden; box-shadow: var(--shadow-md); }
+    .ctable th { background: var(--blue-dark); color: #fff; padding: 13px 18px; text-align: center; font-weight: 700; font-size: 15px; }
+    .ctable th.feat { text-align: left; }
+    .ctable th .sub { display: block; font-size: 11px; font-weight: 500; opacity: 0.85; margin-top: 2px; }
+    .ctable td { padding: 8px 18px; border-bottom: 1px solid var(--bg-subtle); text-align: center; vertical-align: middle; }
+    .ctable td.feat { text-align: left; color: var(--text-dark); font-weight: 600; }
+    .ctable tr.section td { background: var(--bg-light); font-weight: 700; color: var(--blue-dark); text-transform: uppercase; font-size: 11.5px; letter-spacing: 0.6px; text-align: left; padding: 9px 18px; }
+    .ctable td.fix { background: var(--overlay-blue-soft); }
+    .ctable .yes svg { width: 20px; height: 20px; color: var(--blue-primary); }
+    .ctable .no svg { width: 19px; height: 19px; color: var(--text-light); }
+    .ctable .note { display: block; font-size: 10.5px; color: var(--text-gray); font-weight: 500; margin-top: 1px; line-height: 1.2; }
+
+    .miss-note { max-width: 1280px; margin: 14px auto 0; background: var(--overlay-blue-soft); border-left: 4px solid var(--blue-primary); border-radius: 10px; padding: 11px 20px; font-size: 13.5px; color: var(--blue-dark); font-weight: 600; text-align: left; }
+    .legend { max-width: 1280px; margin: 12px auto 0; display: flex; justify-content: flex-start; gap: 22px; font-size: 12px; color: var(--text-gray); flex-wrap: wrap; align-items: center; }
+    .legend .k { display: inline-flex; align-items: center; gap: 7px; }
+    .legend .sw { width: 15px; height: 15px; border-radius: 4px; display: inline-block; }
+    .legend .sw.fix { background: var(--overlay-blue-soft); border: 1px solid var(--blue-primary); }
+    .slide-src { max-width: 1280px; margin: 8px auto 0; text-align: left; font-size: 11px; color: var(--text-light); font-style: italic; }
+  </style>
+</head>
+<body>
+
+  <main class="presentation">
+    <section class="slide active" data-chapter="tableau">
+      <div class="slide-inner">
+
+        <table class="ctable">
+          <thead>
+            <tr>
+              <th class="feat">Critère</th>
+              <th>Pardot<span class="sub">actuel</span></th>
+              <th>Salesforce MCN<span class="sub">natif Salesforce</span></th>
+              <th>HubSpot<span class="sub">système tiers</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="section"><td colspan="4">Architecture, le critère que le slide présenté oubliait</td></tr>
+            <tr>
+              <td class="feat">Base de données native Salesforce</td>
+              <td class="no"><i data-lucide="x"></i></td>
+              <td class="yes"><i data-lucide="check"></i></td>
+              <td class="no"><i data-lucide="x"></i></td>
+            </tr>
+            <tr>
+              <td class="feat">Flux sans synchronisation externe</td>
+              <td class="no"><i data-lucide="x"></i></td>
+              <td class="yes"><i data-lucide="check"></i></td>
+              <td class="no"><i data-lucide="x"></i></td>
+            </tr>
+            <tr>
+              <td class="feat">Un seul système de référence</td>
+              <td class="no"><i data-lucide="x"></i></td>
+              <td class="yes"><i data-lucide="check"></i></td>
+              <td class="no"><i data-lucide="x"></i></td>
+            </tr>
+
+            <tr class="section"><td colspan="4">Fonctionnalités</td></tr>
+            <tr>
+              <td class="feat">Bases, email, landing pages, formulaires</td>
+              <td class="yes"><i data-lucide="check"></i></td>
+              <td class="yes"><i data-lucide="check"></i></td>
+              <td class="yes"><i data-lucide="check"></i></td>
+            </tr>
+            <tr>
+              <td class="feat">A/B testing</td>
+              <td class="yes"><i data-lucide="check"></i><span class="note">via code</span></td>
+              <td class="yes"><i data-lucide="check"></i><span class="note">sans code</span></td>
+              <td class="yes"><i data-lucide="check"></i><span class="note">sans code</span></td>
+            </tr>
+            <tr>
+              <td class="feat">Scoring, lead et IA prédictive</td>
+              <td class="yes"><i data-lucide="check"></i><span class="note">Einstein</span></td>
+              <td class="yes"><i data-lucide="check"></i></td>
+              <td class="yes"><i data-lucide="check"></i></td>
+            </tr>
+            <tr>
+              <td class="feat">Attribution multi-touch, règles et data-driven</td>
+              <td class="yes fix"><i data-lucide="check"></i><span class="note">Campaign Influence, Einstein</span></td>
+              <td class="yes"><i data-lucide="check"></i><span class="note">Einstein, natif</span></td>
+              <td class="yes"><i data-lucide="check"></i><span class="note">règles et data-driven</span></td>
+            </tr>
+            <tr>
+              <td class="feat">Messagerie, SMS et WhatsApp</td>
+              <td class="no"><i data-lucide="x"></i></td>
+              <td class="yes"><i data-lucide="check"></i></td>
+              <td class="yes"><i data-lucide="check"></i></td>
+            </tr>
+            <tr>
+              <td class="feat">Multicanal natif</td>
+              <td class="no"><i data-lucide="x"></i></td>
+              <td class="yes"><i data-lucide="check"></i></td>
+              <td class="yes"><i data-lucide="check"></i></td>
+            </tr>
+            <tr>
+              <td class="feat">IA de création de campagnes</td>
+              <td class="yes fix"><i data-lucide="check"></i><span class="note">Einstein</span></td>
+              <td class="yes fix"><i data-lucide="check"></i><span class="note">natif Agentforce</span></td>
+              <td class="yes"><i data-lucide="check"></i></td>
+            </tr>
+            <tr>
+              <td class="feat">Intégration des réseaux sociaux</td>
+              <td class="no"><i data-lucide="x"></i></td>
+              <td class="yes"><i data-lucide="check"></i></td>
+              <td class="yes"><i data-lucide="check"></i></td>
+            </tr>
+            <tr>
+              <td class="feat">Gestion des réseaux sociaux</td>
+              <td class="no"><i data-lucide="x"></i></td>
+              <td class="no"><i data-lucide="x"></i></td>
+              <td class="yes"><i data-lucide="check"></i></td>
+            </tr>
+            <tr>
+              <td class="feat">SEO et recommandations de contenu</td>
+              <td class="no"><i data-lucide="x"></i></td>
+              <td class="no"><i data-lucide="x"></i></td>
+              <td class="yes"><i data-lucide="check"></i></td>
+            </tr>
+            <tr>
+              <td class="feat">Agent IA, chatbot SDR</td>
+              <td class="yes fix"><i data-lucide="check"></i><span class="note">Agentforce</span></td>
+              <td class="yes fix"><i data-lucide="check"></i><span class="note">Agentforce SDR</span></td>
+              <td class="yes"><i data-lucide="check"></i></td>
+            </tr>
+            <tr>
+              <td class="feat">Support et tutoriels vidéo</td>
+              <td class="yes fix"><i data-lucide="check"></i><span class="note">Trailhead</span></td>
+              <td class="yes fix"><i data-lucide="check"></i><span class="note">Trailhead</span></td>
+              <td class="yes"><i data-lucide="check"></i></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="miss-note">La comparaison clé manquait au slide présenté. L'architecture, en haut, est ce qui décide pour une entreprise dont le système de référence est Salesforce. Sur cet axe, HubSpot n'est pas meilleur que Pardot, et MCN est le seul à résoudre le flux.</div>
+        <div class="legend">
+          <span class="k"><span class="sw fix"></span>Cellules corrigées par rapport au slide présenté</span>
+        </div>
+        <p class="slide-src">Sources : Salesforce (Agentforce SDR), Salesforce Ben et marcloud (attribution et Campaign Influence), Bloomreach et Arkus (MCN natif), Stacksync (connecteur HubSpot).</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://ayming-france.github.io/assets/engine/lucide.min.js"></script>
+  <script src="https://ayming-france.github.io/assets/engine/slides.js"></script>
+  <script>
+    (function () {
+      var draw = function () { if (window.lucide && lucide.createIcons) lucide.createIcons(); };
+      if (document.readyState !== 'loading') draw();
+      else document.addEventListener('DOMContentLoaded', draw);
+    })();
+  </script>
+
+</body>
+</html>
