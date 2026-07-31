@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marketing Operations · Le rôle, et ce que je propose</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://ayming-france.github.io/assets/engine/slides.css">
+  <style>
+    /* Local helpers over the shared engine (slides.css supplies the brand vars, the cover,
+       feature-item / feature-icon, the gradient brand banner). Reuses those tokens. */
+
+    .slide-head { text-align: center; margin-bottom: 8px; }
+    .slide-eyebrow {
+      text-transform: uppercase; letter-spacing: 2px; font-size: 12px;
+      font-weight: 700; color: var(--blue-primary); margin-bottom: 10px;
+    }
+    .slide-title { color: var(--blue-dark); }
+    .slide-lead {
+      font-size: 17px; line-height: 1.6; color: var(--text-gray);
+      max-width: 880px; margin: 14px auto 0; text-align: center;
+    }
+    .slide-src { margin: 20px auto 0; text-align: center; font-size: 12px; color: var(--text-light); font-style: italic; }
+    .cover-credit { margin-top: 22px; font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.9); }
+
+    /* Icon-card grid, reuses .feature-item + .feature-icon from the engine */
+    .icon-grid { display: grid; width: 100%; gap: 24px 36px; margin: 34px auto 0; }
+    .icon-grid.cols-3 { grid-template-columns: repeat(3, 1fr); max-width: 1000px; }
+    .icon-grid.cols-4 { grid-template-columns: repeat(4, 1fr); max-width: 1140px; }
+    .icon-grid .feature-icon { width: 46px; height: 46px; border-radius: 13px; }
+    .icon-grid .feature-icon svg { width: 22px; height: 22px; }
+    .feature-item .ft h4 { font-size: 15px; font-weight: 700; color: var(--blue-dark); margin: 0 0 4px; }
+    .feature-item .ft p { font-size: 12.5px; line-height: 1.45; color: var(--text-gray); margin: 0; text-align: left; }
+
+    /* Section divider */
+    .divider { text-align: center; }
+    .divider-num {
+      font-size: 76px; font-weight: 700; line-height: 1;
+      background: var(--gradient-brand-horizontal);
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .divider-eyebrow { text-transform: uppercase; letter-spacing: 3px; font-size: 13px; font-weight: 700; color: var(--blue-primary); margin-bottom: 6px; }
+    .divider-title { font-size: 48px; font-weight: 700; color: var(--blue-dark); margin: 8px 0 14px; }
+    .divider-sub { font-size: 17px; color: var(--text-gray); max-width: 660px; margin: 0 auto; line-height: 1.55; }
+
+    /* Scope: what it holds / what it does not */
+    .scope-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 920px; margin: 28px auto 0; width: 100%; }
+    .scope-col { background: var(--bg-white); border: 1px solid var(--bg-subtle); border-radius: 16px; padding: 24px 26px; box-shadow: var(--shadow-md); }
+    .scope-col.holds { border-top: 3px solid var(--blue-primary); }
+    .scope-col h5 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.6px; color: var(--blue-dark); margin: 0 0 14px; font-weight: 700; }
+    .scope-col.does-not h5 { color: var(--text-gray); }
+    .scope-list { list-style: none; padding: 0; margin: 0; }
+    .scope-list li { font-size: 13.5px; color: var(--text-dark); line-height: 1.4; padding: 6px 0 6px 20px; position: relative; text-align: left; }
+    .scope-list li::before { content: ""; position: absolute; left: 0; top: 12px; width: 6px; height: 6px; border-radius: 50%; background: var(--blue-primary); }
+    .scope-list.muted li { color: var(--text-gray); }
+    .scope-list.muted li::before { background: var(--text-light); }
+    .scope-list .who { color: var(--blue-primary); font-weight: 600; }
+
+    /* Need checklist */
+    .needlist { max-width: 780px; margin: 28px auto 0; display: flex; flex-direction: column; gap: 12px; }
+    .need-item { display: flex; align-items: flex-start; gap: 13px; text-align: left; }
+    .need-item .ic { color: var(--blue-primary); flex-shrink: 0; margin-top: 1px; }
+    .need-item .ic svg { width: 21px; height: 21px; }
+    .need-item p { font-size: 14.5px; color: var(--text-dark); margin: 0; line-height: 1.45; }
+    .need-item b { color: var(--blue-dark); }
+    .threshold { margin: 28px auto 0; background: var(--gradient-brand-horizontal); color: #fff; border-radius: 14px; padding: 15px 26px; font-size: 15px; font-weight: 600; text-align: center; max-width: 780px; box-shadow: var(--shadow-md); }
+
+    /* Role cards: what they do / how I help */
+    .role-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; width: 100%; max-width: 1120px; margin: 28px auto 0; }
+    .role-grid.duo { grid-template-columns: 1fr 1fr; max-width: 860px; }
+    .role-card { background: var(--bg-white); border: 1px solid var(--bg-subtle); border-radius: 18px; padding: 24px 24px; box-shadow: var(--shadow-md); text-align: left; }
+    .role-tag { display: inline-block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.6px; font-weight: 700; color: var(--blue-primary); }
+    .role-card h4 { font-size: 18px; font-weight: 700; color: var(--blue-dark); margin: 4px 0 0; }
+    .rc-label { display: block; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; color: var(--text-light); margin: 16px 0 4px; }
+    .role-card p { font-size: 13px; color: var(--text-gray); line-height: 1.45; margin: 0; text-align: left; }
+    .rc-help { margin-top: 14px; background: var(--overlay-blue-soft); border-radius: 10px; padding: 11px 13px; }
+    .rc-help .rc-label { color: var(--blue-primary); margin-top: 0; }
+    .rc-help p { color: var(--text-dark); }
+
+    /* Backbone band */
+    .backbone { margin: 22px auto 0; max-width: 1120px; display: flex; align-items: center; gap: 16px; background: linear-gradient(135deg, #eaf6fc 0%, #d5eefb 100%); border: 2px solid var(--blue-primary); border-radius: 16px; padding: 18px 26px; box-shadow: var(--shadow-md); }
+    .backbone .bi { width: 44px; height: 44px; border-radius: 12px; background: var(--blue-primary); color: #fff; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .backbone .bi svg { width: 24px; height: 24px; }
+    .backbone h4 { font-size: 16px; font-weight: 700; color: var(--blue-dark); margin: 0 0 2px; }
+    .backbone p { font-size: 13px; color: var(--text-dark); margin: 0; text-align: left; }
+
+    /* Proposal */
+    .propose-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; width: 100%; max-width: 1080px; margin: 30px auto 0; }
+    .propose-card { background: var(--bg-white); border: 1px solid var(--bg-subtle); border-radius: 18px; padding: 26px 24px; box-shadow: var(--shadow-md); position: relative; text-align: left; }
+    .propose-card.lead-card { border: 2px solid var(--blue-primary); background: linear-gradient(135deg, #f8fafc 0%, #eaf6fc 100%); }
+    .propose-num { width: 40px; height: 40px; border-radius: 50%; background: var(--gradient-brand-horizontal); color: #fff; font-weight: 700; font-size: 17px; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-sm); margin-bottom: 14px; }
+    .propose-card h4 { font-size: 16px; font-weight: 700; color: var(--blue-dark); margin: 0 0 7px; }
+    .propose-card p { font-size: 13px; color: var(--text-gray); line-height: 1.5; margin: 0; text-align: left; }
+    .creds { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 12px; margin: 24px auto 0; max-width: 1000px; }
+    .cred { display: inline-flex; align-items: center; gap: 7px; background: var(--bg-white); border: 1px solid var(--bg-subtle); border-radius: 9999px; padding: 8px 15px; font-size: 12.5px; font-weight: 600; color: var(--blue-dark); box-shadow: var(--shadow-sm); }
+    .cred svg { width: 15px; height: 15px; color: var(--blue-primary); }
+    .closing-note {
+      margin: 26px auto 0; max-width: 900px; background: var(--bg-light);
+      border-left: 4px solid var(--gradient-green-end); border-radius: 12px;
+      padding: 18px 24px; text-align: left;
+    }
+    .closing-note h4 { font-size: 15px; font-weight: 700; color: var(--blue-dark); margin: 0 0 6px; }
+    .closing-note p { font-size: 13.5px; color: var(--text-dark); line-height: 1.55; margin: 0; }
+
+    /* Connector hub */
+    .hub { position: relative; width: 100%; max-width: 880px; height: 420px; margin: 26px auto 0; }
+    .hub-svg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; }
+    .hub-svg line { stroke: var(--blue-primary); stroke-width: 1.5; opacity: 0.45; }
+    .hub-node { position: absolute; transform: translate(-50%, -50%); z-index: 1; background: var(--bg-white); border: 1px solid var(--bg-subtle); border-radius: 14px; box-shadow: var(--shadow-md); padding: 12px 12px; width: 176px; text-align: center; }
+    .hub-node .hn-ic { width: 34px; height: 34px; border-radius: 9px; background: var(--overlay-blue-soft); color: var(--blue-primary); display: flex; align-items: center; justify-content: center; margin: 0 auto 6px; }
+    .hub-node .hn-ic svg { width: 18px; height: 18px; }
+    .hub-node b { font-size: 13px; color: var(--blue-dark); display: block; }
+    .hub-node span { font-size: 11px; color: var(--text-gray); line-height: 1.3; display: block; margin-top: 2px; }
+    .hub-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2; background: var(--gradient-brand-horizontal); color: #fff; border-radius: 18px; padding: 18px 20px; width: 224px; text-align: center; box-shadow: var(--shadow-lg); }
+    .hub-center b { font-size: 16px; display: block; }
+    .hub-center span { font-size: 12px; opacity: 0.92; display: block; margin-top: 3px; }
+
+    /* Why me grid */
+    .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; max-width: 1080px; margin: 26px auto 0; width: 100%; }
+    .why-card { background: var(--bg-white); border: 1px solid var(--bg-subtle); border-top: 3px solid var(--blue-primary); border-radius: 14px; padding: 18px 20px; box-shadow: var(--shadow-sm); text-align: left; }
+    .why-card h4 { font-size: 14px; color: var(--blue-dark); margin: 5px 0 4px; }
+    .why-card p { font-size: 12.5px; color: var(--text-gray); line-height: 1.45; margin: 0; text-align: left; }
+
+    .chapter-nav { max-height: 100vh; overflow-y: auto; }
+    .nav-section-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; color: var(--text-light); padding: 16px 20px 4px; }
+    .chapter-nav .nav-item {
+      white-space: normal; overflow: visible; text-overflow: clip;
+      height: auto; min-height: 0; line-height: 1.25;
+      align-items: flex-start; padding-top: 6px; padding-bottom: 6px;
+    }
+    .chapter-nav .nav-item-number { flex: 0 0 auto; }
+  </style>
+</head>
+<body>
+
+  <nav class="chapter-nav">
+    <div class="nav-toggle"><span></span><span></span><span></span></div>
+    <div class="nav-header">
+      <div class="nav-logo">
+        <img src="https://raw.githubusercontent.com/ayming-france/assets/main/logos/ayming-logo.png" alt="Ayming">
+      </div>
+      <span class="nav-subtitle">Marketing Operations</span>
+    </div>
+    <div class="nav-section">
+      <div class="nav-item active" data-slide="0"><span class="nav-item-number">01</span>Couverture</div>
+      <div class="nav-section-label">Partie 1 · Le rôle</div>
+      <div class="nav-item" data-slide="1"><span class="nav-item-number">02</span>Ouverture partie 1</div>
+      <div class="nav-item" data-slide="2"><span class="nav-item-number">03</span>Le rôle</div>
+      <div class="nav-item" data-slide="3"><span class="nav-item-number">04</span>Le rôle vu du marché</div>
+      <div class="nav-item" data-slide="4"><span class="nav-item-number">05</span>Avons-nous besoin de ce rôle</div>
+      <div class="nav-section-label">Partie 2 · Notre organisation</div>
+      <div class="nav-item" data-slide="5"><span class="nav-item-number">06</span>Ouverture partie 2</div>
+      <div class="nav-item" data-slide="6"><span class="nav-item-number">07</span>Le niveau global</div>
+    </div>
+  </nav>
+
+  <main class="presentation">
+
+    <!-- ========== 0 · COUVERTURE ========== -->
+    <section class="slide cover active" data-chapter="cover">
+      <div class="cover-layout">
+        <div class="cover-left">
+          <div class="cover-logo">
+            <img src="https://raw.githubusercontent.com/ayming-france/assets/main/logos/ayming-logo.png" alt="Ayming">
+          </div>
+          <h1 class="cover-title">Marketing<br>Operations</h1>
+          <p class="cover-subtitle">Le rôle, et ce que je propose</p>
+          <p class="cover-credit">José J Encarnación Saiter · Marketing France · 23 juillet 2026</p>
+        </div>
+        <div class="cover-right">
+          <img class="cover-image" src="https://ayming-france.github.io/assets/imagery/stock/unsplash-1551288049-bebda4e38f71-w1200.jpg" alt="Marketing Operations">
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 1 · OUVERTURE PARTIE 1 ========== -->
+    <section class="slide" data-chapter="part1">
+      <div class="slide-inner">
+        <div class="divider">
+          <div class="divider-num">1</div>
+          <div class="divider-eyebrow">Partie 1</div>
+          <h2 class="divider-title">Le rôle</h2>
+          <p class="divider-sub">Ce qu'est le Marketing Operations, et comment savoir si nous en avons besoin.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 2 · LE ROLE ========== -->
+    <section class="slide" data-chapter="role">
+      <div class="slide-inner">
+        <div class="slide-head">
+          <div class="slide-eyebrow">Le rôle</div>
+          <h1 class="slide-title">Tenir le socle sur lequel le marketing s'exécute</h1>
+          <p class="slide-lead">Le Marketing Operations détient le processus, les workflows, la donnée et la mesure pour que le marketing s'exécute et se mesure. Une pensée système, pas des outils en silo.</p>
+        </div>
+
+        <div class="scope-grid">
+          <div class="scope-col holds">
+            <h5>Le socle qu'il tient</h5>
+            <ul class="scope-list">
+              <li>Le processus et les workflows, de bout en bout.</li>
+              <li>La donnée et sa gouvernance.</li>
+              <li>Le stack connecté, des plateformes à l'analytics.</li>
+              <li>La mesure, du funnel au ROI, et l'expérimentation sur les leviers.</li>
+            </ul>
+          </div>
+          <div class="scope-col does-not">
+            <h5>Ce qu'il ne fait pas, et qui s'en charge</h5>
+            <ul class="scope-list muted">
+              <li>Créer les campagnes. <span class="who">Campaign Ops.</span></li>
+              <li>Rédiger et tenir le site. <span class="who">Le Webmaster.</span></li>
+              <li>Fixer la stratégie. <span class="who">Le CMO.</span></li>
+              <li>Enrichir la donnée au quotidien. <span class="who">La Data.</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <p class="slide-src">Définition consensuelle. Gartner, Forrester, MarTech.org, MarketingOps.com, 2024-2026.</p>
+      </div>
+    </section>
+
+    <!-- ========== 3 · LE ROLE VU DU MARCHE ========== -->
+    <section class="slide" data-chapter="marche">
+      <div class="slide-inner">
+        <div class="slide-head">
+          <div class="slide-eyebrow">Le rôle vu du marché</div>
+          <h1 class="slide-title">Ce que les offres d'emploi décrivent</h1>
+          <p class="slide-lead">Le Marketing Operations Manager est un rôle établi. Voici ce que les offres demandent.</p>
+        </div>
+
+        <div class="icon-grid cols-3">
+          <div class="feature-item">
+            <div class="feature-icon"><i data-lucide="git-branch"></i></div>
+            <div class="ft"><h4>Processus et workflows</h4><p>Cartographier et optimiser les workflows du marketing.</p></div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon"><i data-lucide="layers"></i></div>
+            <div class="ft"><h4>Systèmes et donnée</h4><p>Les systèmes, le stack et la donnée qui soutiennent le marketing.</p></div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon"><i data-lucide="repeat"></i></div>
+            <div class="ft"><h4>Automation et CRM</h4><p>Automation marketing et intégrations CRM.</p></div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon"><i data-lucide="filter"></i></div>
+            <div class="ft"><h4>Gestion des leads</h4><p>Scoring, segmentation, nurturing, passage aux ventes.</p></div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon"><i data-lucide="bar-chart-3"></i></div>
+            <div class="ft"><h4>Mesure et KPI</h4><p>Reporting et insights actionnables pour décider.</p></div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon"><i data-lucide="share-2"></i></div>
+            <div class="ft"><h4>Transverse</h4><p>Ventes, produit et IT. Une vision système, pas en silo.</p></div>
+          </div>
+        </div>
+
+        <p class="slide-src">Offres Marketing Operations Manager, 2025-2026. Workable, InterviewGuy, Zippia.</p>
+      </div>
+    </section>
+
+    <!-- ========== 4 · AVONS-NOUS BESOIN DE CE ROLE ========== -->
+    <section class="slide" data-chapter="besoin">
+      <div class="slide-inner">
+        <div class="slide-head">
+          <div class="slide-eyebrow">Le déclic</div>
+          <h1 class="slide-title">Avons-nous besoin d'un Marketing Operations ?</h1>
+          <p class="slide-lead">Le rôle devient nécessaire dès que plusieurs de ces signaux sont présents.</p>
+        </div>
+
+        <div class="needlist">
+          <div class="need-item"><span class="ic"><i data-lucide="check-circle"></i></span><p><b>Plateformes sous-exploitées.</b> Des outils payés mais à peine utilisés.</p></div>
+          <div class="need-item"><span class="ic"><i data-lucide="check-circle"></i></span><p><b>Tâches manuelles qui s'accumulent.</b> Le travail répétitif absorbe les équipes.</p></div>
+          <div class="need-item"><span class="ic"><i data-lucide="check-circle"></i></span><p><b>Reporting imprécis.</b> Des chiffres sur lesquels personne n'ose décider.</p></div>
+          <div class="need-item"><span class="ic"><i data-lucide="check-circle"></i></span><p><b>Ventes et marketing désalignés.</b> On ne parle pas des mêmes leads.</p></div>
+          <div class="need-item"><span class="ic"><i data-lucide="check-circle"></i></span><p><b>Stack déconnecté.</b> Des outils qui ne se parlent pas, une donnée éparpillée.</p></div>
+          <div class="need-item"><span class="ic"><i data-lucide="check-circle"></i></span><p><b>Contribution difficile à prouver.</b> La part du marketing dans le pipeline reste floue.</p></div>
+        </div>
+
+        <div class="threshold">Trois signaux ou plus, le rôle n'est plus optionnel.</div>
+      </div>
+    </section>
+
+    <!-- ========== 5 · OUVERTURE PARTIE 2 ========== -->
+    <section class="slide" data-chapter="part2">
+      <div class="slide-inner">
+        <div class="divider">
+          <div class="divider-num">2</div>
+          <div class="divider-eyebrow">Partie 2</div>
+          <h2 class="divider-title">Notre organisation</h2>
+          <p class="divider-sub">Où le rôle se place chez nous, ce que chacun fait, et là où j'interviens.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 6 · LE NIVEAU GLOBAL ========== -->
+    <section class="slide" data-chapter="global">
+      <div class="slide-inner">
+        <div class="slide-head">
+          <div class="slide-eyebrow">Partie 2 · Le niveau global</div>
+          <h1 class="slide-title">Au groupe, un rôle qui connecte les pièces</h1>
+          <p class="slide-lead">Le socle est partagé entre les pays. Le Marketing Operations est le rôle au milieu, celui qui relie la direction, les canaux, les pays et les systèmes.</p>
+        </div>
+
+        <div class="hub">
+          <svg class="hub-svg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+            <line x1="50" y1="50" x2="50" y2="11" vector-effect="non-scaling-stroke"/>
+            <line x1="50" y1="50" x2="16" y2="45" vector-effect="non-scaling-stroke"/>
+            <line x1="50" y1="50" x2="84" y2="45" vector-effect="non-scaling-stroke"/>
+            <line x1="50" y1="50" x2="18" y2="86" vector-effect="non-scaling-stroke"/>
+            <line x1="50" y1="50" x2="82" y2="86" vector-effect="non-scaling-stroke"/>
+          </svg>
+          <div class="hub-node" style="left:50%;top:11%;"><div class="hn-ic"><i data-lucide="compass"></i></div><b>CMO</b><span>La direction, le cap</span></div>
+          <div class="hub-node" style="left:16%;top:45%;"><div class="hn-ic"><i data-lucide="cloud"></i></div><b>Salesforce</b><span>L'implémentation</span></div>
+          <div class="hub-node" style="left:84%;top:45%;"><div class="hn-ic"><i data-lucide="globe"></i></div><b>Site</b><span>Canal de conversion</span></div>
+          <div class="hub-node" style="left:18%;top:86%;"><div class="hn-ic"><i data-lucide="cpu"></i></div><b>Data et IA</b><span>La donnée et l'IA</span></div>
+          <div class="hub-node" style="left:82%;top:86%;"><div class="hn-ic"><i data-lucide="map"></i></div><b>Pays</b><span>Aligner au processus, poser les règles</span></div>
+          <div class="hub-center"><b>Marketing Operations</b><span>Le connecteur, au groupe</span></div>
+        </div>
+
+        <p class="slide-src">Le rôle relie la direction, les canaux, les pays et les systèmes. Un connecteur, pas un canal.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="https://ayming-france.github.io/assets/engine/lucide.min.js"></script>
+  <script src="https://ayming-france.github.io/assets/engine/slides.js"></script>
+  <script>
+    (function () {
+      var draw = function () { if (window.lucide && lucide.createIcons) lucide.createIcons(); };
+      if (document.readyState !== 'loading') draw();
+      else document.addEventListener('DOMContentLoaded', draw);
+    })();
+  </script>
+
+</body>
+</html>
