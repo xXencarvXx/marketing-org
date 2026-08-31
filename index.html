@@ -29,6 +29,19 @@
     .icon-grid.cols-4 { grid-template-columns: repeat(4, 1fr); max-width: 1140px; }
     .icon-grid .feature-icon { width: 46px; height: 46px; border-radius: 13px; }
     .icon-grid .feature-icon svg { width: 22px; height: 22px; }
+    /* The engine ladders .feature-item delays only to the fifth child (its own grid
+       archetype never holds more), so the sixth card onwards fades in with no delay
+       and lands before the earlier ones. Ladder the whole grid here, left to right
+       then row by row. */
+    .slide.active .icon-grid .feature-item:nth-child(1) { animation-delay: 0.15s; }
+    .slide.active .icon-grid .feature-item:nth-child(2) { animation-delay: 0.22s; }
+    .slide.active .icon-grid .feature-item:nth-child(3) { animation-delay: 0.29s; }
+    .slide.active .icon-grid .feature-item:nth-child(4) { animation-delay: 0.36s; }
+    .slide.active .icon-grid .feature-item:nth-child(5) { animation-delay: 0.43s; }
+    .slide.active .icon-grid .feature-item:nth-child(6) { animation-delay: 0.50s; }
+    .slide.active .icon-grid .feature-item:nth-child(7) { animation-delay: 0.57s; }
+    .slide.active .icon-grid .feature-item:nth-child(8) { animation-delay: 0.64s; }
+
     .feature-item .ft h4 { font-size: 15px; font-weight: 700; color: var(--blue-dark); margin: 0 0 4px; }
     .feature-item .ft p { font-size: 12.5px; line-height: 1.45; color: var(--text-gray); margin: 0; text-align: left; }
 
@@ -151,8 +164,10 @@
       <div class="nav-section-label">Partie 2 · Notre organisation</div>
       <div class="nav-item" data-slide="5"><span class="nav-item-number">06</span>Ouverture partie 2</div>
       <div class="nav-item" data-slide="6"><span class="nav-item-number">07</span>Le niveau local</div>
-      <div class="nav-item" data-slide="7"><span class="nav-item-number">08</span>Le niveau global</div>
-      <div class="nav-item" data-slide="8"><span class="nav-item-number">09</span>Pourquoi moi</div>
+      <div class="nav-item" data-slide="7"><span class="nav-item-number">08</span>Le point à trancher</div>
+      <div class="nav-item" data-slide="8"><span class="nav-item-number">09</span>La preuve</div>
+      <div class="nav-item" data-slide="9"><span class="nav-item-number">10</span>Le niveau global</div>
+      <div class="nav-item" data-slide="10"><span class="nav-item-number">11</span>Pourquoi moi</div>
     </div>
   </nav>
 
@@ -347,7 +362,95 @@
       </div>
     </section>
 
-    <!-- ========== 6 · LE NIVEAU GLOBAL ========== -->
+    <!-- ========== 6 · LE POINT A TRANCHER ========== -->
+    <section class="slide" data-chapter="trancher">
+      <div class="slide-inner">
+        <div class="slide-head">
+          <div class="slide-eyebrow">Partie 2 · Le point à trancher</div>
+          <h1 class="slide-title">Le site et le CRM côté marketing sont deux métiers</h1>
+          <p class="slide-lead">Aujourd'hui, le même poste tient le site et porte le besoin marketing dans le CRM. Ce sont deux charges complètes, et la seconde mesure la première.</p>
+        </div>
+
+        <div class="scope-grid">
+          <div class="scope-col holds">
+            <h5>Le site, une charge complète</h5>
+            <ul class="scope-list">
+              <li>Les pages, les contenus et la structure éditoriale.</li>
+              <li>Le SEO technique et la performance des pages.</li>
+              <li>Le parcours et les points de conversion.</li>
+              <li>Les évolutions et la maintenance, en continu.</li>
+            </ul>
+          </div>
+          <div class="scope-col holds">
+            <h5>Le CRM côté marketing, une autre charge complète</h5>
+            <ul class="scope-list">
+              <li>Les champs et le modèle dont le marketing a besoin.</li>
+              <li>Les règles de routage et de priorisation des leads.</li>
+              <li>Les exigences d'attribution, du clic au deal.</li>
+              <li>Les définitions du funnel, MQL et SQL comprises.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="backbone">
+          <div class="bi"><i data-lucide="scale"></i></div>
+          <div>
+            <h4>Un canal ne mesure pas sa propre performance</h4>
+            <p>Le Webmaster garde le site et ses conversions. Le Marketing Operations porte le modèle, le routage et la mesure. Les deux se rejoignent sur le formulaire, le tracking et le passage aux ventes.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 7 · LA PREUVE ========== -->
+    <section class="slide" data-chapter="preuve">
+      <div class="slide-inner">
+        <div class="slide-head">
+          <div class="slide-eyebrow">Partie 2 · La preuve</div>
+          <h1 class="slide-title">Ce que coûte l'absence de référence marketing</h1>
+          <p class="slide-lead">Le socle de mesure du groupe a été spécifié sans référence marketing. Voici ce que le gold de production ne peut pas faire pour la méthode de mesure France, vérifié objet par objet.</p>
+        </div>
+
+        <div class="icon-grid cols-4">
+          <div class="feature-item">
+            <div class="feature-icon"><i data-lucide="link-2"></i></div>
+            <div class="ft"><h4>Aucun UTM sur le contact</h4><p>Zéro colonne UTM dans le gold, contre 26&nbsp;284 contacts qui en portent dans le bronze. Un deal ne remonte pas à son canal.</p></div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon"><i data-lucide="shuffle"></i></div>
+            <div class="ft"><h4>Le canal lu sur le mauvais champ</h4><p>Le gold lit l'UTM dynamique et non le premier contact, puis construit le canal sur LEAD_SOURCE, saisi à la main.</p></div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon"><i data-lucide="git-merge"></i></div>
+            <div class="ft"><h4>Aucune normalisation des canaux</h4><p>Le payant arrive en cpc, ppc et paid-search. 1&nbsp;429 leads, un cinquième du total, tombent hors de l'orthographe principale.</p></div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon"><i data-lucide="map"></i></div>
+            <div class="ft"><h4>La France perd 70 pour cent de ses leads</h4><p>Le gold filtre sur le pays du propriétaire, et 89&nbsp;081 des 126&nbsp;846 leads France sont en file d'attente, sans propriétaire.</p></div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon"><i data-lucide="copy"></i></div>
+            <div class="ft"><h4>Chaque lead compté deux fois</h4><p>970&nbsp;133 lignes pour 492&nbsp;488 leads. Les copies sont identiques, aucun filtre ne les sépare.</p></div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon"><i data-lucide="filter"></i></div>
+            <div class="ft"><h4>Le funnel ne suit pas nos définitions</h4><p>Engaged et Nurture comptent tous comme MQL, et un tiers des leads convertis ne compte jamais comme SQL.</p></div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon"><i data-lucide="database"></i></div>
+            <div class="ft"><h4>La table des campagnes renvoie zéro ligne</h4><p>Aucune ligne accessible au marketing, contre 1&nbsp;333&nbsp;062 adhésions présentes dans le bronze.</p></div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon"><i data-lucide="eye-off"></i></div>
+            <div class="ft"><h4>Nos analytics web déclarés inexistants</h4><p>GA4, la Search Console et Bing tournaient déjà quand le groupe a planifié sans eux. Le search n'entre dans aucun plan de mesure.</p></div>
+          </div>
+        </div>
+
+        <p class="slide-src">Points sur le gold : requêtes en lecture seule sur sales_gold.bi et sales_bronze.salesforce, 27 juillet 2026. Chaque signal manquant existe déjà dans le bronze, il est perdu au passage vers le silver.</p>
+      </div>
+    </section>
+
+    <!-- ========== 8 · LE NIVEAU GLOBAL ========== -->
     <section class="slide" data-chapter="global">
       <div class="slide-inner">
         <div class="slide-head">
@@ -376,7 +479,7 @@
       </div>
     </section>
 
-    <!-- ========== 7 · MA PLACE ========== -->
+    <!-- ========== 9 · MA PLACE ========== -->
     <section class="slide" data-chapter="propose">
       <div class="slide-inner">
         <div class="slide-head">
